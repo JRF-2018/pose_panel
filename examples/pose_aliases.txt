@@ -1,0 +1,366 @@
+# ポーズのエイリアス(VRM ポーズビューアーとパネルが読む。ビューアーの「登録…」「編集…」でも書き換えられる)
+#
+# 1 行に 1 つ:  エイリアス名  種類  対象  [時刻]
+#   種類 anim: 対象は .anim のパス(このファイルの所からの相対か、絶対パス)。種類 pose: poses/ に保存したポーズの名前
+#   時刻: 秒(1.6)、フレーム(f30)、最後(end)。省略すると最後
+# 区切りは空白。空白を含むものは "..." で囲む。引用符の外の # から行末はコメント。
+# [グループ名] の行から次の [..] までがそのグループ。最初の [..] より前はルート(いつも見えている所)。
+#
+# ここにある anim/nccy_*/ のアニメーションは、ねここや(かんな久)さんの無料のアセットのものです。
+# このファイルには名前と場所しか入っていないので、使う前にアセットを入手して、ビューアーの「取り込み…」で取り込んでください
+# (取り込み元は anim_sources.txt。入手した zip のままで取り込めます)。
+#   [ポーズ詰め合わせ] アンテナショップねここや  https://necocoya.booth.pm/items/1634088  (NCCY_PoseSet_Free)
+#   [Emote詰め合わせ] アンテナショップねここや  https://necocoya.booth.pm/items/1065089  (EmoteSet_Free)
+# エイリアス名は、作者のカタログの題(ネタ系など)と説明書の動作名を使い、題のないものは見た目から付けました。
+# エモート(動きのあるアニメーション)は、動きの中の 1 つの時刻を選んであります。一部の名前は言い換えました
+# (ケツワープ → 尻ワープ、壁尻 → 壁に埋まる、ラッキースケベ → ラッキーハプニング)。
+# 2 つのアセットのアニメーションは(改変用テンプレートの待機を除いて)すべて登録してあります。使わないものは消してかまいません。
+
+立ち(基本)  anim  anim/nccy_pose_free/000_0000_Idle.anim
+
+[ポーズ: 立ち]
+手を広げて立つ  anim  anim/nccy_pose_free/010_0010.anim
+胸に手を当てる  anim  anim/nccy_pose_free/010_0020.anim
+腕を抱える  anim  anim/nccy_pose_free/010_0030.anim
+前かがみでピース  anim  anim/nccy_pose_free/010_0040.anim
+頭と腰に手  anim  anim/nccy_pose_free/010_0050.anim
+片足を上げて手を振る  anim  anim/nccy_pose_free/010_0060.anim
+すまし立ち  anim  anim/nccy_pose_free/010_0070.anim
+拳を握って片足を上げる  anim  anim/nccy_pose_free/010_0080.anim
+腰に手  anim  anim/nccy_pose_free/010_0090.anim
+両手を頬に  anim  anim/nccy_pose_free/010_0100.anim
+腕を横に伸ばす  anim  anim/nccy_pose_free/010_0110.anim
+片手を上げて片足立ち  anim  anim/nccy_pose_free/010_0120.anim
+跳ねるように手を広げる  anim  anim/nccy_pose_free/010_0130.anim
+足を高く上げる  anim  anim/nccy_pose_free/010_0140.anim
+手を前で組む  anim  anim/nccy_pose_free/010_0150.anim
+振り返って前かがみ  anim  anim/nccy_pose_free/010_0160.anim
+手を広げて踏ん張る  anim  anim/nccy_pose_free/010_0170.anim
+手を横に開いて片足立ち  anim  anim/nccy_pose_free/010_0180.anim
+頭に手を当てる  anim  anim/nccy_pose_free/010_0190.anim
+手を伸ばして振り返る  anim  anim/nccy_pose_free/010_0200.anim
+
+[ポーズ: 座り]
+足を投げ出して座る  anim  anim/nccy_pose_free/011_0010.anim
+ぺたん座り  anim  anim/nccy_pose_free/011_0020.anim
+横座り  anim  anim/nccy_pose_free/011_0030.anim
+耳かき(する側)  anim  anim/nccy_pose_free/011_0040.anim
+しゃがんで手を合わせる  anim  anim/nccy_pose_free/011_0050.anim
+体育座り  anim  anim/nccy_pose_free/011_0060.anim
+あぐら  anim  anim/nccy_pose_free/011_0070.anim
+片膝を立てて座る  anim  anim/nccy_pose_free/011_0080.anim
+しゃがんで片手をつく  anim  anim/nccy_pose_free/011_0090.anim
+膝立ちで頭に手  anim  anim/nccy_pose_free/011_0100.anim
+
+[ポーズ: 寝る・その他]
+仰向け  anim  anim/nccy_pose_free/012_0010.anim
+仰向けで口元に手  anim  anim/nccy_pose_free/012_0020.anim
+大の字  anim  anim/nccy_pose_free/012_0030.anim
+横向きに寝る  anim  anim/nccy_pose_free/012_0040.anim
+うつぶせ  anim  anim/nccy_pose_free/012_0050.anim
+うつぶせで足を上げる  anim  anim/nccy_pose_free/012_0060.anim
+寝そべって片肘をつく  anim  anim/nccy_pose_free/012_0070.anim
+後ろに手をついて座る  anim  anim/nccy_pose_free/012_0080.anim
+丸まって寝る  anim  anim/nccy_pose_free/012_0090.anim
+腕枕で寝る  anim  anim/nccy_pose_free/012_0100.anim
+
+[ポーズ: 男性]
+腕組み(男性)  anim  anim/nccy_pose_free/020_0010.anim
+頭をかく  anim  anim/nccy_pose_free/020_0020.anim
+身構える  anim  anim/nccy_pose_free/020_0030.anim
+指さし(男性)  anim  anim/nccy_pose_free/020_0040.anim
+顎に手を当てて構える  anim  anim/nccy_pose_free/020_0050.anim
+両手を腰に(男性)  anim  anim/nccy_pose_free/020_0060.anim
+あぐら(男性)  anim  anim/nccy_pose_free/020_0070.anim
+ヤンキー座り  anim  anim/nccy_pose_free/020_0080.anim
+寝そべって頬杖  anim  anim/nccy_pose_free/020_0090.anim
+拳を突き上げる  anim  anim/nccy_pose_free/020_0100.anim
+
+[ポーズ: 日常]
+正座  anim  anim/nccy_pose_free/030_0010.anim
+土下座  anim  anim/nccy_pose_free/030_0020.anim
+颯爽と歩く  anim  anim/nccy_pose_free/030_0030.anim
+膝をついてうなだれる  anim  anim/nccy_pose_free/030_0040.anim
+転ぶ  anim  anim/nccy_pose_free/030_0050.anim
+スマホを見る  anim  anim/nccy_pose_free/030_0060.anim
+電話する  anim  anim/nccy_pose_free/030_0061.anim
+壁に手をつく  anim  anim/nccy_pose_free/030_0070.anim
+座って髪を結ぶ  anim  anim/nccy_pose_free/030_0080.anim
+伸びをする  anim  anim/nccy_pose_free/030_0090.anim
+手を差し出す  anim  anim/nccy_pose_free/030_0100.anim
+
+[ポーズ: ネタ]
+ヤムチャしやがって…  anim  anim/nccy_pose_free/040_0010.anim
+ゲッダン  anim  anim/nccy_pose_free/040_0020.anim
+チェンジワイパー  anim  anim/nccy_pose_free/040_0030.anim
+トンファーキック  anim  anim/nccy_pose_free/040_0040.anim
+犬神家  anim  anim/nccy_pose_free/040_0050.anim
+八頭身1  anim  anim/nccy_pose_free/040_0060.anim
+八頭身2  anim  anim/nccy_pose_free/040_0070.anim
+八頭身3  anim  anim/nccy_pose_free/040_0080.anim
+全力で走る  anim  anim/nccy_pose_free/040_0090.anim
+やらないか？  anim  anim/nccy_pose_free/040_0100.anim
+クックロビン  anim  anim/nccy_pose_free/040_0110.anim
+サタデーナイトフィーバー  anim  anim/nccy_pose_free/040_0120.anim
+Daisuke  anim  anim/nccy_pose_free/040_0130.anim
+ホモォ…  anim  anim/nccy_pose_free/040_0140.anim
+笹食ってる場合じゃねぇ  anim  anim/nccy_pose_free/040_0150.anim
+Aポーズ  anim  anim/nccy_pose_free/040_0160.anim
+歌舞伎  anim  anim/nccy_pose_free/040_0170.anim
+そげぶ1  anim  anim/nccy_pose_free/040_0180.anim
+そげぶ2  anim  anim/nccy_pose_free/040_0181.anim
+そげぶ3  anim  anim/nccy_pose_free/040_0182.anim
+そげぶ4  anim  anim/nccy_pose_free/040_0183.anim
+ボディビル(正面)  anim  anim/nccy_pose_free/040_0190.anim
+ボディビル(サイドチェスト)  anim  anim/nccy_pose_free/040_0191.anim
+ボディビル(横)  anim  anim/nccy_pose_free/040_0192.anim
+特戦隊:クリーム  anim  anim/nccy_pose_free/040_0200.anim
+特戦隊:バター  anim  anim/nccy_pose_free/040_0201.anim
+特戦隊:チーズ  anim  anim/nccy_pose_free/040_0202.anim
+特戦隊:ヨーグルト  anim  anim/nccy_pose_free/040_0203.anim
+特戦隊:牛乳  anim  anim/nccy_pose_free/040_0204.anim
+ウマウマ  anim  anim/nccy_pose_free/040_0210.anim
+ヨシッ！  anim  anim/nccy_pose_free/040_0220.anim
+止まるんじゃねえぞ  anim  anim/nccy_pose_free/040_0270.anim
+ゲッツ！  anim  anim/nccy_pose_free/040_0350.anim
+岸田メル  anim  anim/nccy_pose_free/040_0360.anim
+外人4コマ1  anim  anim/nccy_pose_free/040_0370.anim
+外人4コマ2  anim  anim/nccy_pose_free/040_0371.anim
+外人4コマ3  anim  anim/nccy_pose_free/040_0372.anim
+外人4コマ4  anim  anim/nccy_pose_free/040_0373.anim
+外人4コマ5  anim  anim/nccy_pose_free/040_0374.anim
+へんなオジサン  anim  anim/nccy_pose_free/040_0380.anim
+ななめニスト1  anim  anim/nccy_pose_free/040_0390.anim
+ななめニスト2  anim  anim/nccy_pose_free/040_0391.anim
+がに股で手を広げる  anim  anim/nccy_pose_free/040_0400.anim
+手を上げて降参  anim  anim/nccy_pose_free/040_0401.anim
+天国行こう  anim  anim/nccy_pose_free/040_0410.anim
+JOChallenge  anim  anim/nccy_pose_free/040_0420.anim
+"Just Do It!!(今やれ)"  anim  anim/nccy_pose_free/040_0430.anim
+ドナルドダンス1  anim  anim/nccy_pose_free/040_0440.anim
+ドナルドダンス2  anim  anim/nccy_pose_free/040_0441.anim
+ドナルドダンス3  anim  anim/nccy_pose_free/040_0442.anim
+ドナルドダンス4  anim  anim/nccy_pose_free/040_0443.anim
+ドナルドダンス5  anim  anim/nccy_pose_free/040_0444.anim
+許されざる角度  anim  anim/nccy_pose_free/040_0450.anim
+何がクリスマスじゃあい！  anim  anim/nccy_pose_free/040_0460.anim
+粉☆バナナ  anim  anim/nccy_pose_free/040_0470.anim
+GB宣言  anim  anim/nccy_pose_free/040_0480.anim
+宇宙人×宇宙人  anim  anim/nccy_pose_free/040_0490.anim
+先生に言ってやろ☆1  anim  anim/nccy_pose_free/040_0500.anim
+先生に言ってやろ☆2  anim  anim/nccy_pose_free/040_0501.anim
+少女漫画式カンフー1  anim  anim/nccy_pose_free/040_0510.anim
+少女漫画式カンフー2  anim  anim/nccy_pose_free/040_0511.anim
+少女漫画式カンフー3  anim  anim/nccy_pose_free/040_0512.anim
+少女漫画式カンフー4  anim  anim/nccy_pose_free/040_0513.anim
+少女漫画式カンフー5  anim  anim/nccy_pose_free/040_0514.anim
+お許しください！  anim  anim/nccy_pose_free/040_0520.anim
+エ゛エーイ  anim  anim/nccy_pose_free/040_0521.anim
+ウェイ  anim  anim/nccy_pose_free/040_0522.anim
+ドローン  anim  anim/nccy_pose_free/040_0530.anim
+新衣装お披露目配信の時の追加機能  anim  anim/nccy_pose_free/040_0531.anim
+配信時に急にお花摘みに行くVTuber  anim  anim/nccy_pose_free/040_0532.anim
+
+[ポーズ: ジャンプ]
+両手を上げてジャンプ  anim  anim/nccy_pose_free/050_0010.anim
+手を振ってジャンプ  anim  anim/nccy_pose_free/050_0020.anim
+足を後ろに曲げてジャンプ  anim  anim/nccy_pose_free/050_0030.anim
+片手を上げてジャンプ  anim  anim/nccy_pose_free/050_0040.anim
+手を胸の前にジャンプ  anim  anim/nccy_pose_free/050_0050.anim
+片手を頭にジャンプ  anim  anim/nccy_pose_free/050_0060.anim
+手を広げてジャンプ  anim  anim/nccy_pose_free/050_0070.anim
+足を上げてジャンプ  anim  anim/nccy_pose_free/050_0080.anim
+両手を上げてジャンプ(男性)  anim  anim/nccy_pose_free/050_0090.anim
+拳でジャンプ(男性)  anim  anim/nccy_pose_free/050_0100.anim
+走りながらジャンプ  anim  anim/nccy_pose_free/050_0110.anim
+大きく跳ぶ(男性)  anim  anim/nccy_pose_free/050_0120.anim
+のけぞってジャンプ  anim  anim/nccy_pose_free/050_0130.anim
+片足で跳ぶ  anim  anim/nccy_pose_free/050_0140.anim
+正座のままジャンプ  anim  anim/nccy_pose_free/050_0150.anim
+ダイブ  anim  anim/nccy_pose_free/050_0160.anim
+光魔法かっこいいポーズ  anim  anim/nccy_pose_free/050_0170.anim
+ガラスパーン  anim  anim/nccy_pose_free/050_0180.anim
+後ろ向きにジャンプ  anim  anim/nccy_pose_free/050_0190.anim
+手を広げて浮かぶ  anim  anim/nccy_pose_free/050_0200.anim
+
+[ハンドサイン: 右手]   # 指だけのアニメーション。パネル・OscPoser では今のポーズの指に重なる(ビューアーでは指だけの形に見える)
+指(ふだん)(右手)  anim  anim/nccy_pose_free/700_000_IdleFinger-Right.anim
+グー1(右手)  anim  anim/nccy_pose_free/700_010_Fist01-Right.anim
+グー2(右手)  anim  anim/nccy_pose_free/700_011_Fist02-Right.anim
+グー3(右手)  anim  anim/nccy_pose_free/700_012_Fist03-Right.anim
+パー1(右手)  anim  anim/nccy_pose_free/700_020_HandOpen01-Right.anim
+パー2(右手)  anim  anim/nccy_pose_free/700_021_HandOpen02-Right.anim
+パー3(右手)  anim  anim/nccy_pose_free/700_022_HandOpen03-Right.anim
+パー4(右手)  anim  anim/nccy_pose_free/700_023_HandOpen04-Right.anim
+指さし(右手)  anim  anim/nccy_pose_free/700_030_FingerPoint01-Right.anim
+ピース1(右手)  anim  anim/nccy_pose_free/700_040_Victory01-Right.anim
+ピース2(右手)  anim  anim/nccy_pose_free/700_041_Victory02-Right.anim
+ロックンロール1(右手)  anim  anim/nccy_pose_free/700_050_RocknRoll01-Right.anim
+ロックンロール2(右手)  anim  anim/nccy_pose_free/700_051_RocknRoll02-Right.anim
+指鉄砲(右手)  anim  anim/nccy_pose_free/700_060_HandGun01-Right.anim
+親指を立てる(右手)  anim  anim/nccy_pose_free/700_070_ThumbsUp01-Right.anim
+くすくす(右手)  anim  anim/nccy_pose_free/700_080_Kusukusu-Right.anim
+手を置く(右手)  anim  anim/nccy_pose_free/700_090_Oku-Right.anim
+つかむ(右手)  anim  anim/nccy_pose_free/700_091_Tsukamu-Right.anim
+つまむ(右手)  anim  anim/nccy_pose_free/700_092_Tsumamu-Right.anim
+握る(右手)  anim  anim/nccy_pose_free/700_093_Nigiru-Right.anim
+ハート(両手で)(右手)  anim  anim/nccy_pose_free/700_100_Heart01-Right.anim
+キツネ(右手)  anim  anim/nccy_pose_free/700_110_Fox-Right.anim
+OK・お金(右手)  anim  anim/nccy_pose_free/700_120_Money-Right.anim
+指切り(右手)  anim  anim/nccy_pose_free/700_130_Yubikiri-Right.anim
+地面に手をつく(右手)  anim  anim/nccy_pose_free/700_140_Jibeta-Right.anim
+指パッチン(右手)  anim  anim/nccy_pose_free/700_150_Patchn-Right.anim
+ワナワナ(右手)  anim  anim/nccy_pose_free/700_160_Wanawana-Right.anim
+
+[ハンドサイン: 左手]   # 指だけのアニメーション。パネル・OscPoser では今のポーズの指に重なる(ビューアーでは指だけの形に見える)
+指(ふだん)(左手)  anim  anim/nccy_pose_free/700_000_IdleFinger-Left.anim
+グー1(左手)  anim  anim/nccy_pose_free/700_010_Fist01-Left.anim
+グー2(左手)  anim  anim/nccy_pose_free/700_011_Fist02-Left.anim
+グー3(左手)  anim  anim/nccy_pose_free/700_012_Fist03-Left.anim
+パー1(左手)  anim  anim/nccy_pose_free/700_020_HandOpen01-Left.anim
+パー2(左手)  anim  anim/nccy_pose_free/700_021_HandOpen02-Left.anim
+パー3(左手)  anim  anim/nccy_pose_free/700_022_HandOpen03-Left.anim
+パー4(左手)  anim  anim/nccy_pose_free/700_023_HandOpen04-Left.anim
+指さし(左手)  anim  anim/nccy_pose_free/700_030_FingerPoint01-Left.anim
+ピース1(左手)  anim  anim/nccy_pose_free/700_040_Victory01-Left.anim
+ピース2(左手)  anim  anim/nccy_pose_free/700_041_Victory02-Left.anim
+ロックンロール1(左手)  anim  anim/nccy_pose_free/700_050_RocknRoll01-Left.anim
+ロックンロール2(左手)  anim  anim/nccy_pose_free/700_051_RocknRoll02-Left.anim
+指鉄砲(左手)  anim  anim/nccy_pose_free/700_060_HandGun01-Left.anim
+親指を立てる(左手)  anim  anim/nccy_pose_free/700_070_ThumbsUp01-Left.anim
+くすくす(左手)  anim  anim/nccy_pose_free/700_080_Kusukusu-Left.anim
+手を置く(左手)  anim  anim/nccy_pose_free/700_090_Oku-Left.anim
+つかむ(左手)  anim  anim/nccy_pose_free/700_091_Tsukamu-Left.anim
+つまむ(左手)  anim  anim/nccy_pose_free/700_092_Tsumamu-Left.anim
+握る(左手)  anim  anim/nccy_pose_free/700_093_Nigiru-Left.anim
+ハート(両手で)(左手)  anim  anim/nccy_pose_free/700_100_Heart01-Left.anim
+キツネ(左手)  anim  anim/nccy_pose_free/700_110_Fox-Left.anim
+OK・お金(左手)  anim  anim/nccy_pose_free/700_120_Money-Left.anim
+指切り(左手)  anim  anim/nccy_pose_free/700_130_Yubikiri-Left.anim
+地面に手をつく(左手)  anim  anim/nccy_pose_free/700_140_Jibeta-Left.anim
+指パッチン(左手)  anim  anim/nccy_pose_free/700_150_Patchn-Left.anim
+ワナワナ(左手)  anim  anim/nccy_pose_free/700_160_Wanawana-Left.anim
+
+[ハンドサイン: 両手]   # 指だけのアニメーション。パネル・OscPoser では今のポーズの指に重なる(ビューアーでは指だけの形に見える)
+指(ふだん)(両手)  anim  anim/nccy_pose_free/700_000_IdleFinger-Both.anim
+グー1(両手)  anim  anim/nccy_pose_free/700_010_Fist01-Both.anim
+グー2(両手)  anim  anim/nccy_pose_free/700_011_Fist02-Both.anim
+グー3(両手)  anim  anim/nccy_pose_free/700_012_Fist03-Both.anim
+パー1(両手)  anim  anim/nccy_pose_free/700_020_HandOpen01-Both.anim
+パー2(両手)  anim  anim/nccy_pose_free/700_021_HandOpen02-Both.anim
+パー3(両手)  anim  anim/nccy_pose_free/700_022_HandOpen03-Both.anim
+パー4(両手)  anim  anim/nccy_pose_free/700_023_HandOpen04-Both.anim
+指さし(両手)  anim  anim/nccy_pose_free/700_030_FingerPoint01-Both.anim
+ピース1(両手)  anim  anim/nccy_pose_free/700_040_Victory01-Both.anim
+ピース2(両手)  anim  anim/nccy_pose_free/700_041_Victory02-Both.anim
+ロックンロール1(両手)  anim  anim/nccy_pose_free/700_050_RocknRoll01-Both.anim
+ロックンロール2(両手)  anim  anim/nccy_pose_free/700_051_RocknRoll02-Both.anim
+指鉄砲(両手)  anim  anim/nccy_pose_free/700_060_HandGun01-Both.anim
+親指を立てる(両手)  anim  anim/nccy_pose_free/700_070_ThumbsUp01-Both.anim
+くすくす(両手)  anim  anim/nccy_pose_free/700_080_Kusukusu-Both.anim
+手を置く(両手)  anim  anim/nccy_pose_free/700_090_Oku-Both.anim
+つかむ(両手)  anim  anim/nccy_pose_free/700_091_Tsukamu-Both.anim
+つまむ(両手)  anim  anim/nccy_pose_free/700_092_Tsumamu-Both.anim
+握る(両手)  anim  anim/nccy_pose_free/700_093_Nigiru-Both.anim
+ハート(両手で)(両手)  anim  anim/nccy_pose_free/700_100_Heart01-Both.anim
+キツネ(両手)  anim  anim/nccy_pose_free/700_110_Fox-Both.anim
+OK・お金(両手)  anim  anim/nccy_pose_free/700_120_Money-Both.anim
+指切り(両手)  anim  anim/nccy_pose_free/700_130_Yubikiri-Both.anim
+地面に手をつく(両手)  anim  anim/nccy_pose_free/700_140_Jibeta-Both.anim
+指パッチン(両手)  anim  anim/nccy_pose_free/700_150_Patchn-Both.anim
+ワナワナ(両手)  anim  anim/nccy_pose_free/700_160_Wanawana-Both.anim
+
+[エモート1]
+待機(エモート)  anim  anim/nccy_emote_free/00_idle.anim
+手振り1  anim  anim/nccy_emote_free/01_tefuri1.anim  2.57
+手振り2  anim  anim/nccy_emote_free/02_tefuri2.anim  5.87
+うきうき  anim  anim/nccy_emote_free/03_ukiuki.anim  0.33
+バンザイ(ジャンプ)  anim  anim/nccy_emote_free/04_banzai.anim  2.0
+怯え  anim  anim/nccy_emote_free/05_obie.anim
+拗ねる  anim  anim/nccy_emote_free/06_suneru.anim
+あくび  anim  anim/nccy_emote_free/07_akubi.anim  5.2
+胸隠し  anim  anim/nccy_emote_free/08_munekakushi.anim
+スカート押さえ  anim  anim/nccy_emote_free/09_suka-toOsae.anim  2.5
+orz  anim  anim/nccy_emote_free/10_orz.anim
+ラッキーハプニング  anim  anim/nccy_emote_free/11_luckySUKEBE.anim  0.83
+ドジっ子  anim  anim/nccy_emote_free/12_dojikko.anim
+照れ1  anim  anim/nccy_emote_free/13_tere1.anim
+照れ2  anim  anim/nccy_emote_free/14_tere2.anim
+キス(立ち)  anim  anim/nccy_emote_free/15_kiss-stand.anim  5.0
+キス(座り)  anim  anim/nccy_emote_free/16_kiss-sit.anim  5.07
+スリープ  anim  anim/nccy_emote_free/17_sleep.anim  4.83
+ウマウマ(エモート)  anim  anim/nccy_emote_free/18_umauma.anim  0.42
+ヨシ！  anim  anim/nccy_emote_free/19_yoshi.anim
+踏みつけ  anim  anim/nccy_emote_free/20_fumituke.anim  3.97
+壁に埋まる(頭側)  anim  anim/nccy_emote_free/21_kabeshiri-Head.anim  7.41
+壁に埋まる(お尻側)  anim  anim/nccy_emote_free/21_kabeshiri-Hip.anim  7.41
+
+[エモート2]
+手振り3  anim  anim/nccy_emote_free/01_tefuri3.anim  3.1
+おじぎ  anim  anim/nccy_emote_free/02_ojigi.anim  2.1
+ひみつ  anim  anim/nccy_emote_free/03_himitsu.anim
+はわわっ  anim  anim/nccy_emote_free/04_hawawa.anim  4.15
+ピース1(エモート)  anim  anim/nccy_emote_free/05_peace1.anim  2.8
+ピース2(エモート)  anim  anim/nccy_emote_free/06_peace2.anim
+がおー  anim  anim/nccy_emote_free/07_gaow.anim  1.43
+ひょっこり  anim  anim/nccy_emote_free/08_hyokkori.anim  9.37
+厨二病  anim  anim/nccy_emote_free/09_tyu2byou.anim  4.9
+鷹のポーズ  anim  anim/nccy_emote_free/10_takaPose.anim
+止まるんじゃねぇぞ…  anim  anim/nccy_emote_free/11_DoNotStop.anim
+次回予告  anim  anim/nccy_emote_free/12_jikaiyokoku.anim
+エンジェル体操  anim  anim/nccy_emote_free/13_angelTaisou.anim  4.2
+座禅  anim  anim/nccy_emote_free/14_zazen.anim
+参拝  anim  anim/nccy_emote_free/15_sanpai.anim  10.97
+シャフ度  anim  anim/nccy_emote_free/16_shafudo.anim
+壁ドン1  anim  anim/nccy_emote_free/17_kabedon1.anim  1.87
+壁ドン2  anim  anim/nccy_emote_free/18_kabedon2.anim  1.97
+じゃんけん(グー)  anim  anim/nccy_emote_free/19-1_jankenG.anim  2.33
+じゃんけん(チョキ)  anim  anim/nccy_emote_free/19-2_jankenC.anim  2.33
+じゃんけん(パー)  anim  anim/nccy_emote_free/19-3_jankenP.anim  2.33
+フュージョン(左)  anim  anim/nccy_emote_free/20_fusionL.anim  5.27
+フュージョン(右)  anim  anim/nccy_emote_free/20_fusionR.anim  5.27
+
+[エモート3]
+モンキーダンス  anim  anim/nccy_emote_free/01_MonkeyDance.anim  0.18
+正義  anim  anim/nccy_emote_free/02_Justis.anim  3.7
+尻ワープ  anim  anim/nccy_emote_free/03-1_KetsuWarp.anim  2.1
+尻ワープ(＋着地)  anim  anim/nccy_emote_free/03-2_KetsuWarpPlus.anim  13.5
+尻ワープ(短い)  anim  anim/nccy_emote_free/03-3_KetsuWarpShort.anim  1.6
+カカポ(ゆっくり)  anim  anim/nccy_emote_free/04-1_Kakapo-Slow.anim  0.5
+カカポ  anim  anim/nccy_emote_free/04-2_Kakapo-Normal.anim  0.27
+カカポ(速い)  anim  anim/nccy_emote_free/04-3_Kakapo-Fast.anim  0.07
+手振り5  anim  anim/nccy_emote_free/05_Tefuri5.anim  0.27
+コサックダンス  anim  anim/nccy_emote_free/06_CossackDance.anim  0.37
+チャンネル登録よろしく  anim  anim/nccy_emote_free/07_AddChannel.anim  0.77
+ドナルドステップ  anim  anim/nccy_emote_free/08_DonaldStep.anim  1.27
+RanRanRu-  anim  anim/nccy_emote_free/09_RanRanRu-.anim
+なっとるやろがい！  anim  anim/nccy_emote_free/10_Nattoru.anim  1.3
+YGKRダンス  anim  anim/nccy_emote_free/11_YGKR-Dance.anim  10.53
+MRYステップ  anim  anim/nccy_emote_free/12_MRY-Step.anim  0.5
+CTC  anim  anim/nccy_emote_free/13_CTC.anim
+
+[エモート: 別版(1ループ・SDK2)]
+手振り1(1ループ)  anim  anim/nccy_emote_free/01_tefuri1_OneLoop.anim  0.18
+手振り2(1ループ)  anim  anim/nccy_emote_free/02_tefuri2_OneLoop.anim  0.21
+うきうき(1ループ)  anim  anim/nccy_emote_free/03_ukiuki_OneLoop.anim  0.66
+踏みつけ(1ループ)  anim  anim/nccy_emote_free/20_fumituke_OneLoop.anim  0.5
+手振り3(1ループ)  anim  anim/nccy_emote_free/01_tefuri3_OneLoop.anim  0.34
+次回予告(1ループ)  anim  anim/nccy_emote_free/12_jikaiyokoku_OneLoop.anim  1.49
+エンジェル体操(1ループ1)  anim  anim/nccy_emote_free/13_angelTaisou_OneLoop_01.anim  0.21
+エンジェル体操(1ループ2)  anim  anim/nccy_emote_free/13_angelTaisou_OneLoop_02.anim  0.42
+エンジェル体操(1ループ3)  anim  anim/nccy_emote_free/13_angelTaisou_OneLoop_03.anim  0.2
+エンジェル体操(1ループ4)  anim  anim/nccy_emote_free/13_angelTaisou_OneLoop_04.anim  0.27
+手振り5(1ループ)  anim  anim/nccy_emote_free/05_Tefuri5_OneLoop.anim  0.23
+YGKRダンス(1ループ1)  anim  anim/nccy_emote_free/11_YGKR-Dance_OneLoop-1.anim  0.53
+YGKRダンス(1ループ2)  anim  anim/nccy_emote_free/11_YGKR-Dance_OneLoop-2.anim  0.53
+YGKRダンス(1ループ3)  anim  anim/nccy_emote_free/11_YGKR-Dance_OneLoop-3.anim  0.53
+YGKRダンス(1ループ4)  anim  anim/nccy_emote_free/11_YGKR-Dance_OneLoop-4.anim  0.53
+YGKRダンス(1ループ5)  anim  anim/nccy_emote_free/11_YGKR-Dance_OneLoop-5.anim  0.5
+CTC(1ループ1)  anim  anim/nccy_emote_free/13_CTC_OneLoop-1.anim  1.73
+CTC(1ループ2)  anim  anim/nccy_emote_free/13_CTC_OneLoop-2.anim  0.43
+スリープ(SDK2)  anim  anim/nccy_emote_free/17_sleep_SDK2.anim  24.83
+ウマウマ(SDK2)  anim  anim/nccy_emote_free/18_umauma_SDK2.anim  0.43
+モンキーダンス(SDK2)  anim  anim/nccy_emote_free/01_MonkeyDance_SKD2.anim  6.67
+カカポ(ゆっくり・SDK2)  anim  anim/nccy_emote_free/04-1_Kakapo-Slow_SDK2.anim  1.1
+カカポ(SDK2)  anim  anim/nccy_emote_free/04-2_Kakapo-Normal_SDK2.anim  0.57
+カカポ(速い・SDK2)  anim  anim/nccy_emote_free/04-3_Kakapo-Fast_SDK2.anim  7.4
