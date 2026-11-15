@@ -119,7 +119,7 @@ public static class WinNative
     {
         var ofn = new OpenFileName();
         ofn.structSize = Marshal.SizeOf(ofn);
-        ofn.filter = $"{label} ({ext})\0{ext}\0すべてのファイル (*.*)\0*.*\0\0";
+        ofn.filter = $"{label} ({ext})\0{ext}\0" + L.T("すべてのファイル", "All files") + " (*.*)\0*.*\0\0";
         ofn.filterIndex = 1;
         ofn.file = new string('\0', 1024);
         ofn.maxFile = ofn.file.Length;

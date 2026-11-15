@@ -38,7 +38,7 @@ VRChat は --profile=N で、同じ PC でいくつも同時に動かせます(�
 
 ■ ライセンス
 MIT License(LICENSE.txt)。ビューアーには UniVRM などが入っています(THIRD_PARTY_NOTICES.txt)。
-付属の pose_aliases.txt の例は、ねここやさんのアセットの名前と場所だけで、アニメーションは含みません。
+付属の pose_aliases.txt の例(英語版 pose_aliases.en.txt も)は、ねここやさんのアセットの名前と場所だけで、アニメーションは含みません。
 
 JRF ( http://jrf.cocolog-nifty.com/statuses , X: @jion_rockford )
 Claude Opus 5.5 がほとんどを書きました。

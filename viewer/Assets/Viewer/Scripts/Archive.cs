@@ -27,7 +27,7 @@ public static class Archive
         var ext = Path.GetExtension(path).ToLowerInvariant();
         if (ext == ".unitypackage") return UnityPackage.ReadAnims(path);
         if (ext == ".zip") return ReadZip(path);
-        throw new Exception($"読めない種類のファイルです: {Path.GetFileName(path)}(.zip・.unitypackage・フォルダ)");
+        throw new Exception(L.T($"読めない種類のファイルです: {Path.GetFileName(path)}(.zip・.unitypackage・フォルダ)", $"Cannot read this kind of file: {Path.GetFileName(path)} (.zip, .unitypackage, folder)"));
     }
 
     static List<UnityPackage.Anim> ReadFolder(string dir)
@@ -98,17 +98,17 @@ public static class Archive
             int eocd = -1;
             for (int i = tail - 22; i >= 0; i--)
                 if (U32(buf, i) == 0x06054b50) { eocd = i; break; }
-            if (eocd < 0) throw new Exception("zip として読めません");
+            if (eocd < 0) throw new Exception(L.T("zip として読めません", "Cannot read it as a zip"));
             int count = U16(buf, eocd + 10);
             long cdSize = U32(buf, eocd + 12), cdOffset = U32(buf, eocd + 16);
-            if (cdOffset == 0xFFFFFFFF || count == 0xFFFF) throw new Exception("ZIP64 の zip には対応していません");
+            if (cdOffset == 0xFFFFFFFF || count == 0xFFFF) throw new Exception(L.T("ZIP64 の zip には対応していません", "ZIP64 is not supported"));
             var cd = new byte[cdSize];
             file.Seek(cdOffset, SeekOrigin.Begin);
             UnityPackage.ReadFull(file, cd, cd.Length);
             int p = 0;
             for (int n = 0; n < count && p + 46 <= cd.Length; n++)
             {
-                if (U32(cd, p) != 0x02014b50) throw new Exception("zip の目次が壊れています");
+                if (U32(cd, p) != 0x02014b50) throw new Exception(L.T("zip の目次が壊れています", "The zip directory is broken"));
                 int flags = U16(cd, p + 8);
                 int nameLen = U16(cd, p + 28), extraLen = U16(cd, p + 30), commentLen = U16(cd, p + 32);
                 var e = new ZipEntry
@@ -129,14 +129,14 @@ public static class Archive
             var head = new byte[30];
             file.Seek(e.Offset, SeekOrigin.Begin);
             UnityPackage.ReadFull(file, head, 30);
-            if (U32(head, 0) != 0x04034b50) throw new Exception($"zip の中が壊れています: {e.Name}");
+            if (U32(head, 0) != 0x04034b50) throw new Exception(L.T("zip の中が壊れています: ", "The zip is broken: ") + e.Name);
             file.Seek(e.Offset + 30 + U16(head, 26) + U16(head, 28), SeekOrigin.Begin);
             var data = new byte[e.CompressedSize];
             UnityPackage.ReadFull(file, data, data.Length);
             var ms = new MemoryStream(data);
             if (e.Method == 0) return ms;
             if (e.Method == 8) return new DeflateStream(ms, CompressionMode.Decompress);
-            throw new Exception($"この圧縮方式には対応していません({e.Method}): {e.Name}");
+            throw new Exception(L.T($"この圧縮方式には対応していません({e.Method}): {e.Name}", $"Unsupported compression ({e.Method}): {e.Name}"));
         }
 
         public void Dispose() => file.Dispose();

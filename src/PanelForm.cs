@@ -15,7 +15,7 @@ using static L;
 
 class PanelForm : Form
 {
-    public const string Version = "0.1.0";
+    public const string Version = "0.1.1";
     static readonly string Here = AppDomain.CurrentDomain.BaseDirectory.TrimEnd('\\');
     static string AliasPath => Path.Combine(Here, "pose_aliases.txt");
     static string ViewerExe => Path.Combine(Here, "VrmPoseViewer", "VrmPoseViewer.exe");
@@ -429,7 +429,7 @@ class PanelForm : Form
     void StartViewer(string extra)
     {
         if (!File.Exists(ViewerExe)) { Log(T("ビューアーがありません: ", "Viewer not found: ") + ViewerExe); return; }
-        Process.Start(new ProcessStartInfo(ViewerExe, $"-agent \"{Here}\" {extra}") { WorkingDirectory = Path.GetDirectoryName(ViewerExe), UseShellExecute = false });
+        Process.Start(new ProcessStartInfo(ViewerExe, $"-agent \"{Here}\" -lang {(L.Ja ? "ja" : "en")} {extra}") { WorkingDirectory = Path.GetDirectoryName(ViewerExe), UseShellExecute = false });
         Log(T("ビューアーを開きました", "Opened the viewer"));
     }
 
@@ -542,7 +542,7 @@ class PanelForm : Form
             var api = new NumericUpDown { Left = 300, Top = y, Width = 80, Minimum = 1024, Maximum = 65535, Value = st.ApiPort };
             f.Controls.Add(api);
             y += 30;
-            f.Controls.Add(new Label { Text = T("画面の言語(次に起動したときから)", "Language (from the next start)"), Left = 10, Top = y + 3, AutoSize = true });
+            f.Controls.Add(new Label { Text = T("画面の言語(次に起動したときから。OscPoser・ビューアーも)", "Language (from the next start; also OscPoser and the viewer)"), Left = 10, Top = y + 3, AutoSize = true });
             var langs = new[] { "", "ja", "en" };
             var lang = new ComboBox { Left = 300, Top = y, Width = 160, DropDownStyle = ComboBoxStyle.DropDownList };
             lang.Items.AddRange(new object[] { T("Windows に合わせる", "Same as Windows"), "日本語", "English" });

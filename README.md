@@ -32,7 +32,7 @@ VRChat のアバターに、名前を付けて登録したポーズ(**エイリ�
 
 ## 入れ方
 
-1. zip を展開して、好きな場所に置きます(例: `D:\VrcPoseAliasesPanel_0.1.0\`)。
+1. zip を展開して、好きな場所に置きます(例: `D:\VrcPoseAliasesPanel_0.1.1\`)。
 2. OscPoser の zip も展開し、**このフォルダの中か横に**、`OscPoser_<版>` のフォルダのまま置きます。そうすれば自動で見つけます(zip を「すべて展開」してできる二重のフォルダでもかまいません)。別の場所に置いたときは、起動したときに場所を聞かれるので `OscPoser.exe` を選んでください(⚙ でも変えられます)。
 3. `VrcPoseAliasesPanel.exe` を起動します。OscPoser が動いていなければ、パネルが OscPoser を開きます。
 4. ▣ でビューアーを開き、**最初に VRM をドロップ**します(「VRM を開く…」でも)。ポーズを確かめるのに使います(OscPoser の VRM とは別に覚えます)。
@@ -56,7 +56,7 @@ OscPoser の窓では、送る前に体の向き・高さを変えたり、手�
 | ◉ | VRChat の窓(または画面全体)を撮る。`shots\` に PNG、パスはクリップボードへ |
 | ▣ | ビューアーを開く(選んでいるポーズを表示した状態で) |
 | ◫ | OscPoser の窓を前に出す(動いていなければ開く) |
-| ⚙ | 設定(OscPoser・launch.exe の場所、デスクトップモードで起動するか、画面の言語など) |
+| ⚙ | 設定(OscPoser・launch.exe の場所、デスクトップモードで起動するか、画面の言語(OscPoser・ビューアーも)など) |
 | ⊤ | いつも手前に表示 |
 | ⛔ | OscPoser のまだ送っていない分をやめる |
 | ♙ | 任意ポーズを入れる・切る |
@@ -114,7 +114,7 @@ OscPoser の窓では、送る前に体の向き・高さを変えたり、手�
 <a id="example"></a>
 ## 例: ねここやさんの無料のポーズ・エモート
 
-付属の `pose_aliases.txt` には、ねここや(かんな久)さんの無料のアセットのポーズ・エモートを 320 個登録してあります。**アニメーションそのものは入っていない** ので、入手して取り込んでください。
+付属の `pose_aliases.txt` には、ねここや(かんな久)さんの無料のアセットのポーズ・エモートを 320 個登録してあります。**アニメーションそのものは入っていない** ので、入手して取り込んでください。同じものの英語版 `pose_aliases.en.txt` も付けてあります(英語で使う人は、これを `pose_aliases.txt` に名前を変えて使います)。
 
 1. 次の 2 つの無料版を Booth で入手します(zip のままでかまいません)。
    - [ポーズ詰め合わせ](https://necocoya.booth.pm/items/1634088)(`NCCY_PoseSet_Free_v200.zip` など)
@@ -159,7 +159,7 @@ VRChat は、起動するときに `--profile=N` を付けると、別のプロ�
 
 ## 設定と、できるファイル
 
-- ⚙: OscPoser.exe の場所(空なら自動で探す)、VRChat の launch.exe の場所(空なら Steam のライブラリから探す)、デスクトップモードで起動するか、OscPoser の操作の口のポート(既定 9330)、画面の言語(Windows に合わせる・日本語・English)。
+- ⚙: OscPoser.exe の場所(空なら自動で探す)、VRChat の launch.exe の場所(空なら Steam のライブラリから探す)、デスクトップモードで起動するか、OscPoser の操作の口のポート(既定 9330)、画面の言語(Windows に合わせる・日本語・English。パネルが開く OscPoser・ビューアーも同じ言語になります。ビューアーは右上のボタンでも切り替えられます)。
 - このフォルダにできるもの: `VrcPoseAliasesPanel.json`(設定)、`VrcPoseAliasesPanel_log.txt`(記録)、`anim\`(取り込んだ・コピーしたアニメーション)、`poses\`(保存したポーズ)、`shots\`(撮った画像)。
 - ビューアーの設定(前に開いた VRM など)は Windows のレジストリ(`HKEY_CURRENT_USER\Software\JRF\VrmPoseViewer`)に入ります。
 
@@ -188,4 +188,4 @@ MIT License（LICENSE）.
 
 ビューアーには UniVRM(MIT License)などが入っています。[THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) を見てください。
 
-付属の `pose_aliases.txt` の例は、ねここやさんのアセットの名前と場所だけを書いたもので、アニメーションは含みません。アセットの利用は、それぞれの規約に従ってください。
+付属の `pose_aliases.txt`・`pose_aliases.en.txt` の例は、ねここやさんのアセットの名前と場所だけを書いたもので、アニメーションは含みません。アセットの利用は、それぞれの規約に従ってください。

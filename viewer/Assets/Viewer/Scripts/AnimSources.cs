@@ -39,7 +39,7 @@ public class AnimSources
         {
             var w = PoseLibrary.SplitWords(lines[n]);
             if (w.Count == 0) continue;
-            if (w.Count < 3) { Errors.Add($"anim_sources.txt:{n + 1}: 「フォルダ パスの頭 名前 [入手先]」の形ではありません"); continue; }
+            if (w.Count < 3) { Errors.Add($"anim_sources.txt:{n + 1}: " + L.T("「フォルダ パスの頭 名前 [入手先]」の形ではありません", "not in the form \"folder path-prefix name [url]\"")); continue; }
             var s = new Source { Folder = w[0].Trim('/'), Pattern = w[1], Name = w[2], Url = w.Count > 3 ? w[3] : null };
             var alts = s.Pattern.Split('|').Select(p => Regex.Escape(p.Trim().TrimEnd('/') + "/").Replace(@"\*", "[^/]*"));
             s.Re = new Regex("^(?:" + string.Join("|", alts) + ")");
@@ -98,7 +98,7 @@ public class AnimSources
                     var first = hits[0].anim.Bytes;
                     if (hits.Skip(1).Any(h => !h.anim.Bytes.SequenceEqual(first)))
                     {
-                        report.Add($"{s.Name}: {rest} は中身の違う同じ名前のファイルがあり、決められません");
+                        report.Add(L.T($"{s.Name}: {rest} は中身の違う同じ名前のファイルがあり、決められません", $"{s.Name}: {rest}: several different files have this name; cannot choose"));
                         continue;
                     }
                     pick = hits[0].anim;
@@ -110,9 +110,9 @@ public class AnimSources
                 ok++;
             }
             written += ok;
-            report.Add($"{s.Name}: {ok} 個を取り込みました" + (notFound.Count > 0 ? $"(見つからないもの {notFound.Count} 個: {string.Join(", ", notFound.Take(5))}{(notFound.Count > 5 ? " …" : "")})" : ""));
+            report.Add(L.T($"{s.Name}: {ok} 個を取り込みました", $"{s.Name}: imported {ok}") + (notFound.Count > 0 ? L.T($"(見つからないもの {notFound.Count} 個: ", $" (not found: {notFound.Count}: ") + $"{string.Join(", ", notFound.Take(5))}{(notFound.Count > 5 ? " …" : "")}" + L.T(")", ")") : ""));
         }
-        if (report.Count == 0) report.Add("このファイルには、取り込み元(anim_sources.txt)に合うアニメーションがありませんでした");
+        if (report.Count == 0) report.Add(L.T("このファイルには、取り込み元(anim_sources.txt)に合うアニメーションがありませんでした", "This file has no animations matching the sources (anim_sources.txt)"));
         return report;
     }
 }

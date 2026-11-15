@@ -1,0 +1,367 @@
+# Pose aliases (read by the VRM Pose Viewer and the panel; the viewer's "Register…" and "Edit…" also rewrite this file)
+#
+# English users: rename this file to pose_aliases.txt (replacing the Japanese one).
+#
+# One per line:  name  kind  target  [time]
+#   kind anim: target is a path to a .anim (relative to this file, or absolute). kind pose: the name of a pose saved in poses/
+#   time: seconds (1.6), frame (f30) or end. Omitted = end
+# Separated by spaces. Quote things containing spaces with "...". From # (outside quotes) to the end of line is a comment.
+# A [group] line starts a group until the next [..]. Lines before the first [..] are the root (always visible).
+#
+# The animations in anim/nccy_*/ are from free assets by Necocoya (Kanna Hisashi).
+# This file has only names and locations; get the assets and import them with the viewer's "Import…"
+# (the sources are in anim_sources.txt; the downloaded zips can be imported as they are).
+#   [Pose set]  https://necocoya.booth.pm/items/1634088  (NCCY_PoseSet_Free)
+#   [Emote set] https://necocoya.booth.pm/items/1065089  (EmoteSet_Free)
+# The names are translated from the Japanese example (the author's catalog titles and motion names). Many of the
+# "Memes" are Japanese internet jokes; their names are just romanized. For emotes (moving animations), one moment is chosen.
+# All animations of the two assets are registered (except an editing template). Delete what you don't use.
+
+"Stand (basic)"  anim  anim/nccy_pose_free/000_0000_Idle.anim
+
+[Pose: Standing]
+"Arms open"  anim  anim/nccy_pose_free/010_0010.anim
+"Hand on chest"  anim  anim/nccy_pose_free/010_0020.anim
+"Hugging own arm"  anim  anim/nccy_pose_free/010_0030.anim
+"Leaning peace sign"  anim  anim/nccy_pose_free/010_0040.anim
+"Hands on head and hip"  anim  anim/nccy_pose_free/010_0050.anim
+"Waving on one leg"  anim  anim/nccy_pose_free/010_0060.anim
+"Prim stance"  anim  anim/nccy_pose_free/010_0070.anim
+"Fists, one leg up"  anim  anim/nccy_pose_free/010_0080.anim
+"Hand on hip"  anim  anim/nccy_pose_free/010_0090.anim
+"Hands on cheeks"  anim  anim/nccy_pose_free/010_0100.anim
+"Arm stretched sideways"  anim  anim/nccy_pose_free/010_0110.anim
+"Hand up, one leg"  anim  anim/nccy_pose_free/010_0120.anim
+"Bouncy arms open"  anim  anim/nccy_pose_free/010_0130.anim
+"High kick"  anim  anim/nccy_pose_free/010_0140.anim
+"Hands clasped in front"  anim  anim/nccy_pose_free/010_0150.anim
+"Looking back, leaning"  anim  anim/nccy_pose_free/010_0160.anim
+"Arms open, firm stance"  anim  anim/nccy_pose_free/010_0170.anim
+"Arms out, one leg"  anim  anim/nccy_pose_free/010_0180.anim
+"Hand on head"  anim  anim/nccy_pose_free/010_0190.anim
+"Reaching, looking back"  anim  anim/nccy_pose_free/010_0200.anim
+
+[Pose: Sitting]
+"Sitting, legs out"  anim  anim/nccy_pose_free/011_0010.anim
+W-sitting  anim  anim/nccy_pose_free/011_0020.anim
+"Side sitting"  anim  anim/nccy_pose_free/011_0030.anim
+"Ear cleaning (giving)"  anim  anim/nccy_pose_free/011_0040.anim
+"Squatting, hands together"  anim  anim/nccy_pose_free/011_0050.anim
+"Sitting, hugging knees"  anim  anim/nccy_pose_free/011_0060.anim
+Cross-legged  anim  anim/nccy_pose_free/011_0070.anim
+"Sitting, one knee up"  anim  anim/nccy_pose_free/011_0080.anim
+"Squatting, one hand down"  anim  anim/nccy_pose_free/011_0090.anim
+"Kneeling, hand on head"  anim  anim/nccy_pose_free/011_0100.anim
+
+[Pose: Lying & other]
+"Lying on back"  anim  anim/nccy_pose_free/012_0010.anim
+"On back, hand to mouth"  anim  anim/nccy_pose_free/012_0020.anim
+Spread-eagle  anim  anim/nccy_pose_free/012_0030.anim
+"Lying on side"  anim  anim/nccy_pose_free/012_0040.anim
+"Lying face down"  anim  anim/nccy_pose_free/012_0050.anim
+"Face down, legs up"  anim  anim/nccy_pose_free/012_0060.anim
+"Lying on one elbow"  anim  anim/nccy_pose_free/012_0070.anim
+"Sitting, leaning back"  anim  anim/nccy_pose_free/012_0080.anim
+"Curled up asleep"  anim  anim/nccy_pose_free/012_0090.anim
+"Asleep on arm"  anim  anim/nccy_pose_free/012_0100.anim
+
+[Pose: Male]
+"Arms crossed (male)"  anim  anim/nccy_pose_free/020_0010.anim
+"Scratching head"  anim  anim/nccy_pose_free/020_0020.anim
+"On guard"  anim  anim/nccy_pose_free/020_0030.anim
+"Pointing (male)"  anim  anim/nccy_pose_free/020_0040.anim
+"Hand on chin"  anim  anim/nccy_pose_free/020_0050.anim
+"Hands on hips (male)"  anim  anim/nccy_pose_free/020_0060.anim
+"Cross-legged (male)"  anim  anim/nccy_pose_free/020_0070.anim
+"Squatting low (yankee)"  anim  anim/nccy_pose_free/020_0080.anim
+"Lying, chin in hand"  anim  anim/nccy_pose_free/020_0090.anim
+"Fist raised"  anim  anim/nccy_pose_free/020_0100.anim
+
+[Pose: Everyday]
+"Seiza (formal sitting)"  anim  anim/nccy_pose_free/030_0010.anim
+"Dogeza (deep bow)"  anim  anim/nccy_pose_free/030_0020.anim
+Striding  anim  anim/nccy_pose_free/030_0030.anim
+"Kneeling in despair"  anim  anim/nccy_pose_free/030_0040.anim
+Falling  anim  anim/nccy_pose_free/030_0050.anim
+"Looking at phone"  anim  anim/nccy_pose_free/030_0060.anim
+"On the phone"  anim  anim/nccy_pose_free/030_0061.anim
+"Hand on wall"  anim  anim/nccy_pose_free/030_0070.anim
+"Sitting, tying hair"  anim  anim/nccy_pose_free/030_0080.anim
+Stretching  anim  anim/nccy_pose_free/030_0090.anim
+"Offering a hand"  anim  anim/nccy_pose_free/030_0100.anim
+
+[Pose: Memes]
+"Yamcha down"  anim  anim/nccy_pose_free/040_0010.anim
+Getdan  anim  anim/nccy_pose_free/040_0020.anim
+"Change wiper"  anim  anim/nccy_pose_free/040_0030.anim
+"Tonfa kick"  anim  anim/nccy_pose_free/040_0040.anim
+"Inugami-ke (legs out of water)"  anim  anim/nccy_pose_free/040_0050.anim
+"Hattoushin 1"  anim  anim/nccy_pose_free/040_0060.anim
+"Hattoushin 2"  anim  anim/nccy_pose_free/040_0070.anim
+"Hattoushin 3"  anim  anim/nccy_pose_free/040_0080.anim
+"Running all out"  anim  anim/nccy_pose_free/040_0090.anim
+Yaranaika?  anim  anim/nccy_pose_free/040_0100.anim
+"Cock Robin"  anim  anim/nccy_pose_free/040_0110.anim
+"Saturday Night Fever"  anim  anim/nccy_pose_free/040_0120.anim
+Daisuke  anim  anim/nccy_pose_free/040_0130.anim
+Homoo...  anim  anim/nccy_pose_free/040_0140.anim
+"No time for bamboo"  anim  anim/nccy_pose_free/040_0150.anim
+A-pose  anim  anim/nccy_pose_free/040_0160.anim
+Kabuki  anim  anim/nccy_pose_free/040_0170.anim
+"Sogebu 1"  anim  anim/nccy_pose_free/040_0180.anim
+"Sogebu 2"  anim  anim/nccy_pose_free/040_0181.anim
+"Sogebu 3"  anim  anim/nccy_pose_free/040_0182.anim
+"Sogebu 4"  anim  anim/nccy_pose_free/040_0183.anim
+"Bodybuilding (front)"  anim  anim/nccy_pose_free/040_0190.anim
+"Bodybuilding (side chest)"  anim  anim/nccy_pose_free/040_0191.anim
+"Bodybuilding (side)"  anim  anim/nccy_pose_free/040_0192.anim
+"Special force: cream"  anim  anim/nccy_pose_free/040_0200.anim
+"Special force: butter"  anim  anim/nccy_pose_free/040_0201.anim
+"Special force: cheese"  anim  anim/nccy_pose_free/040_0202.anim
+"Special force: yogurt"  anim  anim/nccy_pose_free/040_0203.anim
+"Special force: milk"  anim  anim/nccy_pose_free/040_0204.anim
+Umauma  anim  anim/nccy_pose_free/040_0210.anim
+"Yoshi! (pointing check)"  anim  anim/nccy_pose_free/040_0220.anim
+"Don't stop"  anim  anim/nccy_pose_free/040_0270.anim
+Get!  anim  anim/nccy_pose_free/040_0350.anim
+"Kishida Mel"  anim  anim/nccy_pose_free/040_0360.anim
+"Foreign 4-koma 1"  anim  anim/nccy_pose_free/040_0370.anim
+"Foreign 4-koma 2"  anim  anim/nccy_pose_free/040_0371.anim
+"Foreign 4-koma 3"  anim  anim/nccy_pose_free/040_0372.anim
+"Foreign 4-koma 4"  anim  anim/nccy_pose_free/040_0373.anim
+"Foreign 4-koma 5"  anim  anim/nccy_pose_free/040_0374.anim
+"Weird old man"  anim  anim/nccy_pose_free/040_0380.anim
+"Slanting 1"  anim  anim/nccy_pose_free/040_0390.anim
+"Slanting 2"  anim  anim/nccy_pose_free/040_0391.anim
+"Bow-legged, arms open"  anim  anim/nccy_pose_free/040_0400.anim
+"Hands up, surrender"  anim  anim/nccy_pose_free/040_0401.anim
+"Let's go to heaven"  anim  anim/nccy_pose_free/040_0410.anim
+JOChallenge  anim  anim/nccy_pose_free/040_0420.anim
+"Just Do It!!"  anim  anim/nccy_pose_free/040_0430.anim
+"Donald dance 1"  anim  anim/nccy_pose_free/040_0440.anim
+"Donald dance 2"  anim  anim/nccy_pose_free/040_0441.anim
+"Donald dance 3"  anim  anim/nccy_pose_free/040_0442.anim
+"Donald dance 4"  anim  anim/nccy_pose_free/040_0443.anim
+"Donald dance 5"  anim  anim/nccy_pose_free/040_0444.anim
+"Unforgivable angle"  anim  anim/nccy_pose_free/040_0450.anim
+"What Christmas!"  anim  anim/nccy_pose_free/040_0460.anim
+"Kona banana"  anim  anim/nccy_pose_free/040_0470.anim
+"GB declaration"  anim  anim/nccy_pose_free/040_0480.anim
+"Alien x alien"  anim  anim/nccy_pose_free/040_0490.anim
+"Gonna tell the teacher 1"  anim  anim/nccy_pose_free/040_0500.anim
+"Gonna tell the teacher 2"  anim  anim/nccy_pose_free/040_0501.anim
+"Shoujo manga kung fu 1"  anim  anim/nccy_pose_free/040_0510.anim
+"Shoujo manga kung fu 2"  anim  anim/nccy_pose_free/040_0511.anim
+"Shoujo manga kung fu 3"  anim  anim/nccy_pose_free/040_0512.anim
+"Shoujo manga kung fu 4"  anim  anim/nccy_pose_free/040_0513.anim
+"Shoujo manga kung fu 5"  anim  anim/nccy_pose_free/040_0514.anim
+"Please forgive me!"  anim  anim/nccy_pose_free/040_0520.anim
+Eeeei  anim  anim/nccy_pose_free/040_0521.anim
+Wei  anim  anim/nccy_pose_free/040_0522.anim
+Drone  anim  anim/nccy_pose_free/040_0530.anim
+"New outfit reveal stream"  anim  anim/nccy_pose_free/040_0531.anim
+"VTuber leaving mid-stream"  anim  anim/nccy_pose_free/040_0532.anim
+
+[Pose: Jumping]
+"Jump, both hands up"  anim  anim/nccy_pose_free/050_0010.anim
+"Jump, waving"  anim  anim/nccy_pose_free/050_0020.anim
+"Jump, legs bent back"  anim  anim/nccy_pose_free/050_0030.anim
+"Jump, one hand up"  anim  anim/nccy_pose_free/050_0040.anim
+"Jump, hands at chest"  anim  anim/nccy_pose_free/050_0050.anim
+"Jump, hand on head"  anim  anim/nccy_pose_free/050_0060.anim
+"Jump, arms open"  anim  anim/nccy_pose_free/050_0070.anim
+"Jump, leg up"  anim  anim/nccy_pose_free/050_0080.anim
+"Jump, both hands up (male)"  anim  anim/nccy_pose_free/050_0090.anim
+"Jump, fist (male)"  anim  anim/nccy_pose_free/050_0100.anim
+"Running jump"  anim  anim/nccy_pose_free/050_0110.anim
+"Big leap (male)"  anim  anim/nccy_pose_free/050_0120.anim
+"Jump, leaning back"  anim  anim/nccy_pose_free/050_0130.anim
+"Hop on one leg"  anim  anim/nccy_pose_free/050_0140.anim
+"Jump in seiza"  anim  anim/nccy_pose_free/050_0150.anim
+Dive  anim  anim/nccy_pose_free/050_0160.anim
+"Cool light-magic pose"  anim  anim/nccy_pose_free/050_0170.anim
+"Breaking glass"  anim  anim/nccy_pose_free/050_0180.anim
+"Jump backward"  anim  anim/nccy_pose_free/050_0190.anim
+"Floating, arms open"  anim  anim/nccy_pose_free/050_0200.anim
+
+[Hand sign: right]   # fingers only. In the panel and OscPoser they are layered on the current pose (the viewer shows the fingers alone)
+"Fingers (idle) (right)"  anim  anim/nccy_pose_free/700_000_IdleFinger-Right.anim
+"Fist 1 (right)"  anim  anim/nccy_pose_free/700_010_Fist01-Right.anim
+"Fist 2 (right)"  anim  anim/nccy_pose_free/700_011_Fist02-Right.anim
+"Fist 3 (right)"  anim  anim/nccy_pose_free/700_012_Fist03-Right.anim
+"Open hand 1 (right)"  anim  anim/nccy_pose_free/700_020_HandOpen01-Right.anim
+"Open hand 2 (right)"  anim  anim/nccy_pose_free/700_021_HandOpen02-Right.anim
+"Open hand 3 (right)"  anim  anim/nccy_pose_free/700_022_HandOpen03-Right.anim
+"Open hand 4 (right)"  anim  anim/nccy_pose_free/700_023_HandOpen04-Right.anim
+"Point (right)"  anim  anim/nccy_pose_free/700_030_FingerPoint01-Right.anim
+"Peace 1 (right)"  anim  anim/nccy_pose_free/700_040_Victory01-Right.anim
+"Peace 2 (right)"  anim  anim/nccy_pose_free/700_041_Victory02-Right.anim
+"Rock'n'roll 1 (right)"  anim  anim/nccy_pose_free/700_050_RocknRoll01-Right.anim
+"Rock'n'roll 2 (right)"  anim  anim/nccy_pose_free/700_051_RocknRoll02-Right.anim
+"Finger gun (right)"  anim  anim/nccy_pose_free/700_060_HandGun01-Right.anim
+"Thumbs up (right)"  anim  anim/nccy_pose_free/700_070_ThumbsUp01-Right.anim
+"Giggle (right)"  anim  anim/nccy_pose_free/700_080_Kusukusu-Right.anim
+"Hand resting (right)"  anim  anim/nccy_pose_free/700_090_Oku-Right.anim
+"Grab (right)"  anim  anim/nccy_pose_free/700_091_Tsukamu-Right.anim
+"Pinch (right)"  anim  anim/nccy_pose_free/700_092_Tsumamu-Right.anim
+"Grip (right)"  anim  anim/nccy_pose_free/700_093_Nigiru-Right.anim
+"Heart (two hands) (right)"  anim  anim/nccy_pose_free/700_100_Heart01-Right.anim
+"Fox (right)"  anim  anim/nccy_pose_free/700_110_Fox-Right.anim
+"OK / money (right)"  anim  anim/nccy_pose_free/700_120_Money-Right.anim
+"Pinky promise (right)"  anim  anim/nccy_pose_free/700_130_Yubikiri-Right.anim
+"Hand on ground (right)"  anim  anim/nccy_pose_free/700_140_Jibeta-Right.anim
+"Finger snap (right)"  anim  anim/nccy_pose_free/700_150_Patchn-Right.anim
+"Trembling (right)"  anim  anim/nccy_pose_free/700_160_Wanawana-Right.anim
+
+[Hand sign: left]   # fingers only. In the panel and OscPoser they are layered on the current pose (the viewer shows the fingers alone)
+"Fingers (idle) (left)"  anim  anim/nccy_pose_free/700_000_IdleFinger-Left.anim
+"Fist 1 (left)"  anim  anim/nccy_pose_free/700_010_Fist01-Left.anim
+"Fist 2 (left)"  anim  anim/nccy_pose_free/700_011_Fist02-Left.anim
+"Fist 3 (left)"  anim  anim/nccy_pose_free/700_012_Fist03-Left.anim
+"Open hand 1 (left)"  anim  anim/nccy_pose_free/700_020_HandOpen01-Left.anim
+"Open hand 2 (left)"  anim  anim/nccy_pose_free/700_021_HandOpen02-Left.anim
+"Open hand 3 (left)"  anim  anim/nccy_pose_free/700_022_HandOpen03-Left.anim
+"Open hand 4 (left)"  anim  anim/nccy_pose_free/700_023_HandOpen04-Left.anim
+"Point (left)"  anim  anim/nccy_pose_free/700_030_FingerPoint01-Left.anim
+"Peace 1 (left)"  anim  anim/nccy_pose_free/700_040_Victory01-Left.anim
+"Peace 2 (left)"  anim  anim/nccy_pose_free/700_041_Victory02-Left.anim
+"Rock'n'roll 1 (left)"  anim  anim/nccy_pose_free/700_050_RocknRoll01-Left.anim
+"Rock'n'roll 2 (left)"  anim  anim/nccy_pose_free/700_051_RocknRoll02-Left.anim
+"Finger gun (left)"  anim  anim/nccy_pose_free/700_060_HandGun01-Left.anim
+"Thumbs up (left)"  anim  anim/nccy_pose_free/700_070_ThumbsUp01-Left.anim
+"Giggle (left)"  anim  anim/nccy_pose_free/700_080_Kusukusu-Left.anim
+"Hand resting (left)"  anim  anim/nccy_pose_free/700_090_Oku-Left.anim
+"Grab (left)"  anim  anim/nccy_pose_free/700_091_Tsukamu-Left.anim
+"Pinch (left)"  anim  anim/nccy_pose_free/700_092_Tsumamu-Left.anim
+"Grip (left)"  anim  anim/nccy_pose_free/700_093_Nigiru-Left.anim
+"Heart (two hands) (left)"  anim  anim/nccy_pose_free/700_100_Heart01-Left.anim
+"Fox (left)"  anim  anim/nccy_pose_free/700_110_Fox-Left.anim
+"OK / money (left)"  anim  anim/nccy_pose_free/700_120_Money-Left.anim
+"Pinky promise (left)"  anim  anim/nccy_pose_free/700_130_Yubikiri-Left.anim
+"Hand on ground (left)"  anim  anim/nccy_pose_free/700_140_Jibeta-Left.anim
+"Finger snap (left)"  anim  anim/nccy_pose_free/700_150_Patchn-Left.anim
+"Trembling (left)"  anim  anim/nccy_pose_free/700_160_Wanawana-Left.anim
+
+[Hand sign: both]   # fingers only. In the panel and OscPoser they are layered on the current pose (the viewer shows the fingers alone)
+"Fingers (idle) (both)"  anim  anim/nccy_pose_free/700_000_IdleFinger-Both.anim
+"Fist 1 (both)"  anim  anim/nccy_pose_free/700_010_Fist01-Both.anim
+"Fist 2 (both)"  anim  anim/nccy_pose_free/700_011_Fist02-Both.anim
+"Fist 3 (both)"  anim  anim/nccy_pose_free/700_012_Fist03-Both.anim
+"Open hand 1 (both)"  anim  anim/nccy_pose_free/700_020_HandOpen01-Both.anim
+"Open hand 2 (both)"  anim  anim/nccy_pose_free/700_021_HandOpen02-Both.anim
+"Open hand 3 (both)"  anim  anim/nccy_pose_free/700_022_HandOpen03-Both.anim
+"Open hand 4 (both)"  anim  anim/nccy_pose_free/700_023_HandOpen04-Both.anim
+"Point (both)"  anim  anim/nccy_pose_free/700_030_FingerPoint01-Both.anim
+"Peace 1 (both)"  anim  anim/nccy_pose_free/700_040_Victory01-Both.anim
+"Peace 2 (both)"  anim  anim/nccy_pose_free/700_041_Victory02-Both.anim
+"Rock'n'roll 1 (both)"  anim  anim/nccy_pose_free/700_050_RocknRoll01-Both.anim
+"Rock'n'roll 2 (both)"  anim  anim/nccy_pose_free/700_051_RocknRoll02-Both.anim
+"Finger gun (both)"  anim  anim/nccy_pose_free/700_060_HandGun01-Both.anim
+"Thumbs up (both)"  anim  anim/nccy_pose_free/700_070_ThumbsUp01-Both.anim
+"Giggle (both)"  anim  anim/nccy_pose_free/700_080_Kusukusu-Both.anim
+"Hand resting (both)"  anim  anim/nccy_pose_free/700_090_Oku-Both.anim
+"Grab (both)"  anim  anim/nccy_pose_free/700_091_Tsukamu-Both.anim
+"Pinch (both)"  anim  anim/nccy_pose_free/700_092_Tsumamu-Both.anim
+"Grip (both)"  anim  anim/nccy_pose_free/700_093_Nigiru-Both.anim
+"Heart (two hands) (both)"  anim  anim/nccy_pose_free/700_100_Heart01-Both.anim
+"Fox (both)"  anim  anim/nccy_pose_free/700_110_Fox-Both.anim
+"OK / money (both)"  anim  anim/nccy_pose_free/700_120_Money-Both.anim
+"Pinky promise (both)"  anim  anim/nccy_pose_free/700_130_Yubikiri-Both.anim
+"Hand on ground (both)"  anim  anim/nccy_pose_free/700_140_Jibeta-Both.anim
+"Finger snap (both)"  anim  anim/nccy_pose_free/700_150_Patchn-Both.anim
+"Trembling (both)"  anim  anim/nccy_pose_free/700_160_Wanawana-Both.anim
+
+[Emotes 1]
+"Idle (emote)"  anim  anim/nccy_emote_free/00_idle.anim
+"Wave 1"  anim  anim/nccy_emote_free/01_tefuri1.anim  2.57
+"Wave 2"  anim  anim/nccy_emote_free/02_tefuri2.anim  5.87
+Excited  anim  anim/nccy_emote_free/03_ukiuki.anim  0.33
+"Banzai (jump)"  anim  anim/nccy_emote_free/04_banzai.anim  2.0
+Scared  anim  anim/nccy_emote_free/05_obie.anim
+Sulking  anim  anim/nccy_emote_free/06_suneru.anim
+Yawn  anim  anim/nccy_emote_free/07_akubi.anim  5.2
+"Covering chest"  anim  anim/nccy_emote_free/08_munekakushi.anim
+"Holding skirt down"  anim  anim/nccy_emote_free/09_suka-toOsae.anim  2.5
+orz  anim  anim/nccy_emote_free/10_orz.anim
+"Lucky accident"  anim  anim/nccy_emote_free/11_luckySUKEBE.anim  0.83
+Clumsy  anim  anim/nccy_emote_free/12_dojikko.anim
+"Shy 1"  anim  anim/nccy_emote_free/13_tere1.anim
+"Shy 2"  anim  anim/nccy_emote_free/14_tere2.anim
+"Kiss (standing)"  anim  anim/nccy_emote_free/15_kiss-stand.anim  5.0
+"Kiss (sitting)"  anim  anim/nccy_emote_free/16_kiss-sit.anim  5.07
+Sleep  anim  anim/nccy_emote_free/17_sleep.anim  4.83
+"Umauma (emote)"  anim  anim/nccy_emote_free/18_umauma.anim  0.42
+Yoshi!  anim  anim/nccy_emote_free/19_yoshi.anim
+Stomping  anim  anim/nccy_emote_free/20_fumituke.anim  3.97
+"Stuck in wall (head side)"  anim  anim/nccy_emote_free/21_kabeshiri-Head.anim  7.41
+"Stuck in wall (hip side)"  anim  anim/nccy_emote_free/21_kabeshiri-Hip.anim  7.41
+
+[Emotes 2]
+"Wave 3"  anim  anim/nccy_emote_free/01_tefuri3.anim  3.1
+Bow  anim  anim/nccy_emote_free/02_ojigi.anim  2.1
+Secret  anim  anim/nccy_emote_free/03_himitsu.anim
+Hawawa  anim  anim/nccy_emote_free/04_hawawa.anim  4.15
+"Peace 1 (emote)"  anim  anim/nccy_emote_free/05_peace1.anim  2.8
+"Peace 2 (emote)"  anim  anim/nccy_emote_free/06_peace2.anim
+Rawr  anim  anim/nccy_emote_free/07_gaow.anim  1.43
+"Peeking out"  anim  anim/nccy_emote_free/08_hyokkori.anim  9.37
+Chuunibyou  anim  anim/nccy_emote_free/09_tyu2byou.anim  4.9
+"Hawk pose"  anim  anim/nccy_emote_free/10_takaPose.anim
+"Don't stop..."  anim  anim/nccy_emote_free/11_DoNotStop.anim
+"Next episode preview"  anim  anim/nccy_emote_free/12_jikaiyokoku.anim
+"Angel exercise"  anim  anim/nccy_emote_free/13_angelTaisou.anim  4.2
+Zazen  anim  anim/nccy_emote_free/14_zazen.anim
+"Shrine prayer"  anim  anim/nccy_emote_free/15_sanpai.anim  10.97
+"Shaft head tilt"  anim  anim/nccy_emote_free/16_shafudo.anim
+"Kabedon 1"  anim  anim/nccy_emote_free/17_kabedon1.anim  1.87
+"Kabedon 2"  anim  anim/nccy_emote_free/18_kabedon2.anim  1.97
+"Janken (rock)"  anim  anim/nccy_emote_free/19-1_jankenG.anim  2.33
+"Janken (scissors)"  anim  anim/nccy_emote_free/19-2_jankenC.anim  2.33
+"Janken (paper)"  anim  anim/nccy_emote_free/19-3_jankenP.anim  2.33
+"Fusion (left)"  anim  anim/nccy_emote_free/20_fusionL.anim  5.27
+"Fusion (right)"  anim  anim/nccy_emote_free/20_fusionR.anim  5.27
+
+[Emotes 3]
+"Monkey dance"  anim  anim/nccy_emote_free/01_MonkeyDance.anim  0.18
+Justice  anim  anim/nccy_emote_free/02_Justis.anim  3.7
+"Butt warp"  anim  anim/nccy_emote_free/03-1_KetsuWarp.anim  2.1
+"Butt warp (+ landing)"  anim  anim/nccy_emote_free/03-2_KetsuWarpPlus.anim  13.5
+"Butt warp (short)"  anim  anim/nccy_emote_free/03-3_KetsuWarpShort.anim  1.6
+"Kakapo (slow)"  anim  anim/nccy_emote_free/04-1_Kakapo-Slow.anim  0.5
+Kakapo  anim  anim/nccy_emote_free/04-2_Kakapo-Normal.anim  0.27
+"Kakapo (fast)"  anim  anim/nccy_emote_free/04-3_Kakapo-Fast.anim  0.07
+"Wave 5"  anim  anim/nccy_emote_free/05_Tefuri5.anim  0.27
+"Cossack dance"  anim  anim/nccy_emote_free/06_CossackDance.anim  0.37
+"Please subscribe"  anim  anim/nccy_emote_free/07_AddChannel.anim  0.77
+"Donald step"  anim  anim/nccy_emote_free/08_DonaldStep.anim  1.27
+RanRanRu-  anim  anim/nccy_emote_free/09_RanRanRu-.anim
+"Nattoru yarogai!"  anim  anim/nccy_emote_free/10_Nattoru.anim  1.3
+"YGKR dance"  anim  anim/nccy_emote_free/11_YGKR-Dance.anim  10.53
+"MRY step"  anim  anim/nccy_emote_free/12_MRY-Step.anim  0.5
+CTC  anim  anim/nccy_emote_free/13_CTC.anim
+
+[Emotes: variants (one loop, SDK2)]
+"Wave 1 (one loop)"  anim  anim/nccy_emote_free/01_tefuri1_OneLoop.anim  0.18
+"Wave 2 (one loop)"  anim  anim/nccy_emote_free/02_tefuri2_OneLoop.anim  0.21
+"Excited (one loop)"  anim  anim/nccy_emote_free/03_ukiuki_OneLoop.anim  0.66
+"Stomping (one loop)"  anim  anim/nccy_emote_free/20_fumituke_OneLoop.anim  0.5
+"Wave 3 (one loop)"  anim  anim/nccy_emote_free/01_tefuri3_OneLoop.anim  0.34
+"Next episode preview (one loop)"  anim  anim/nccy_emote_free/12_jikaiyokoku_OneLoop.anim  1.49
+"Angel exercise (one loop 1)"  anim  anim/nccy_emote_free/13_angelTaisou_OneLoop_01.anim  0.21
+"Angel exercise (one loop 2)"  anim  anim/nccy_emote_free/13_angelTaisou_OneLoop_02.anim  0.42
+"Angel exercise (one loop 3)"  anim  anim/nccy_emote_free/13_angelTaisou_OneLoop_03.anim  0.2
+"Angel exercise (one loop 4)"  anim  anim/nccy_emote_free/13_angelTaisou_OneLoop_04.anim  0.27
+"Wave 5 (one loop)"  anim  anim/nccy_emote_free/05_Tefuri5_OneLoop.anim  0.23
+"YGKR dance (one loop 1)"  anim  anim/nccy_emote_free/11_YGKR-Dance_OneLoop-1.anim  0.53
+"YGKR dance (one loop 2)"  anim  anim/nccy_emote_free/11_YGKR-Dance_OneLoop-2.anim  0.53
+"YGKR dance (one loop 3)"  anim  anim/nccy_emote_free/11_YGKR-Dance_OneLoop-3.anim  0.53
+"YGKR dance (one loop 4)"  anim  anim/nccy_emote_free/11_YGKR-Dance_OneLoop-4.anim  0.53
+"YGKR dance (one loop 5)"  anim  anim/nccy_emote_free/11_YGKR-Dance_OneLoop-5.anim  0.5
+"CTC (one loop 1)"  anim  anim/nccy_emote_free/13_CTC_OneLoop-1.anim  1.73
+"CTC (one loop 2)"  anim  anim/nccy_emote_free/13_CTC_OneLoop-2.anim  0.43
+"Sleep (SDK2)"  anim  anim/nccy_emote_free/17_sleep_SDK2.anim  24.83
+"Umauma (SDK2)"  anim  anim/nccy_emote_free/18_umauma_SDK2.anim  0.43
+"Monkey dance (SDK2)"  anim  anim/nccy_emote_free/01_MonkeyDance_SKD2.anim  6.67
+"Kakapo (slow, SDK2)"  anim  anim/nccy_emote_free/04-1_Kakapo-Slow_SDK2.anim  1.1
+"Kakapo (SDK2)"  anim  anim/nccy_emote_free/04-2_Kakapo-Normal_SDK2.anim  0.57
+"Kakapo (fast, SDK2)"  anim  anim/nccy_emote_free/04-3_Kakapo-Fast_SDK2.anim  7.4

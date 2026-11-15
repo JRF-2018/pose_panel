@@ -90,8 +90,8 @@ public class PoseLibrary
         {
             var n = Path.GetFileNameWithoutExtension(f);
             int port = n == "pose_state" ? 9000 : int.TryParse(n.Substring(n.LastIndexOf('_') + 1), out var q) ? q : 0;
-            var who = port >= 9000 && (port - 9000) % 10 == 0 ? $"プロフィール {(port - 9000) / 10}" : $"ポート {port}";
-            Entries.Add(new PoseEntry { Group = "いまの任意ポーズ", Name = n, Kind = "state", Target = f, Label = $"{Path.GetFileName(f)}({who}に送った値。変われば読み直す)" });
+            var who = port >= 9000 && (port - 9000) % 10 == 0 ? L.T("プロフィール ", "profile ") + (port - 9000) / 10 : L.T("ポート ", "port ") + port;
+            Entries.Add(new PoseEntry { Group = "いまの任意ポーズ", Name = n, Kind = "state", Target = f, Label = L.T($"{Path.GetFileName(f)}({who}に送った値。変われば読み直す)", $"{Path.GetFileName(f)} (values sent to {who}; reloaded when changed)") });
         }
     }
 
@@ -246,7 +246,7 @@ public class PoseLibrary
         if (e.Kind == "anim") return AnimPath(e.Target);
         if (e.Kind == "emote")
         {
-            if (!emoteClips.TryGetValue(e.Target, out var clip)) throw new Exception($"エモート {e.Target} が emote_poses.json にありません");
+            if (!emoteClips.TryGetValue(e.Target, out var clip)) throw new Exception(L.T($"エモート {e.Target} が emote_poses.json にありません", $"Emote {e.Target} is not in emote_poses.json"));
             // anim/emote/ のコピー(extract_emote_poses.py --copy-to)があればそれを
             if (emoteAnims.TryGetValue(e.Target, out var copy) && File.Exists(Path.Combine(AgentDir, copy))) return Path.Combine(AgentDir, copy);
             return AnimPath(clip);

@@ -59,7 +59,7 @@ public class AliasFile
             if (w.Count == 0) continue;
             if ((w.Count != 3 && w.Count != 4) || (w[1] != "emote" && w[1] != "anim" && w[1] != "pose"))
             {
-                Errors.Add($"pose_aliases.txt:{n + 1}: 「エイリアス名 種類 対象 [時刻]」の形ではありません");
+                Errors.Add($"pose_aliases.txt:{n + 1}: " + L.T("「エイリアス名 種類 対象 [時刻]」の形ではありません", "not in the form \"name kind target [time]\""));
                 continue;
             }
             var it = new Item { Name = w[0], Kind = w[1], Target = w[2], When = w.Count == 4 && w[3] != "end" ? w[3] : null, Group = group, Line = n };
@@ -85,7 +85,7 @@ public class AliasFile
     // oldKey があり(編集): oldKey の行を新しい中身に書き換え、tags にないグループの行は消し、足りないグループには足す。
     public void Put(Item content, ICollection<string> tags, string oldKey = null)
     {
-        if (tags.Count == 0) throw new Exception("グループ(ルートも含めて)を 1 つ以上選んでください");
+        if (tags.Count == 0) throw new Exception(L.T("グループ(ルートも含めて)を 1 つ以上選んでください", "Choose at least one group (root counts)"));
         if (oldKey != null)
         {
             foreach (var x in Items.Where(x => x.Key == oldKey).OrderByDescending(x => x.Line).ToList())

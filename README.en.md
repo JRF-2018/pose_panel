@@ -15,7 +15,9 @@ This panel is not a self-contained tool, and **it takes some effort to get start
 - Panel: `VrcPoseAliasesPanel.exe` (C# WinForms, runs on .NET Framework 4.8, which comes with Windows)
 - Viewer: `VrmPoseViewer\VrmPoseViewer.exe` (shows a pose on a VRM; also where you register/edit aliases and import animations)
 
-The example aliases and the panel's sample names are in Japanese. Set the panel's language in ⚙ (English is chosen automatically on non-Japanese Windows); the viewer is in Japanese only.
+**English users**: the bundled `pose_aliases.txt` (the example list) is in Japanese. An English version, `pose_aliases.en.txt`, is included: **rename it to `pose_aliases.txt`** (replacing the Japanese one) before you start.
+
+The panel, OscPoser and the viewer all have English screens. The panel follows the Windows language (or set it in ⚙), and opens OscPoser and the viewer in the same language. The viewer also has a language button at the top right.
 
 ## What it does
 
@@ -34,10 +36,10 @@ The example aliases and the panel's sample names are in Japanese. Set the panel'
 
 ## Install
 
-1. Extract the zip anywhere (e.g. `D:\VrcPoseAliasesPanel_0.1.0\`).
+1. Extract the zip anywhere (e.g. `D:\VrcPoseAliasesPanel_0.1.1\`). Rename `pose_aliases.en.txt` to `pose_aliases.txt` (replacing the Japanese example).
 2. Extract OscPoser too, and put its `OscPoser_<version>` folder **inside or next to** this folder; it is then found automatically (the double folder made by "Extract All" is fine). If you put it elsewhere, you are asked for `OscPoser.exe` at startup (or set it in ⚙).
 3. Start `VrcPoseAliasesPanel.exe`. If OscPoser is not running, the panel opens it.
-4. Open the viewer with ▣ and **first drop a VRM** on it ("VRM を開く…" also works). It is used to check poses (remembered separately from OscPoser's VRM).
+4. Open the viewer with ▣ and **first drop a VRM** on it ("Open VRM…" also works). It is used to check poses (remembered separately from OscPoser's VRM).
 
 To use the example aliases, continue with [Example: Necocoya's free poses and emotes](#example).
 
@@ -58,7 +60,7 @@ In OscPoser's window you can adjust the body direction/height or move the hands 
 | ◉ | Screenshot a VRChat window (or the whole screen) to `shots\`; the path is copied |
 | ▣ | Open the viewer (showing the chosen pose) |
 | ◫ | Bring OscPoser to front (open it if not running) |
-| ⚙ | Settings (OscPoser / launch.exe locations, desktop mode, language, ...) |
+| ⚙ | Settings (OscPoser / launch.exe locations, desktop mode, language (also for OscPoser and the viewer), ...) |
 | ⊤ | Always on top |
 | ⛔ | Stop OscPoser's pending sends |
 | ♙ | Pose on / off |
@@ -105,22 +107,22 @@ Cross-legged anim  anim/nccy_pose_free/011_0070.anim
 
 ### Editing
 
-- **Reorder, delete in bulk, reorganize groups: edit `pose_aliases.txt` directly.** The viewer's "pose_aliases.txt をメモ帳で編集" (edit in Notepad) opens it; when you save, the viewer reloads its list. The panel rereads the file every time you open the menu.
+- **Reorder, delete in bulk, reorganize groups: edit `pose_aliases.txt` directly.** The viewer's "Edit pose_aliases.txt in Notepad" opens it; when you save, the viewer reloads its list. The panel rereads the file every time you open the menu.
 - Adding one at a time, renaming, grouping can also be done in the viewer:
-  - **登録… (Register)**: register what you are looking at (an animation at its time, or a saved pose) with a name and groups. Animations from elsewhere are copied into `anim\` first.
-  - **編集… (Edit)**: change the name, groups or time, or remove the alias (the file is kept).
+  - **Register…**: register what you are looking at (an animation at its time, or a saved pose) with a name and groups. Animations from elsewhere are copied into `anim\` first.
+  - **Edit…**: change the name, groups or time, or remove the alias (the file is kept).
   - The viewer keeps the lines it does not change (comments etc.).
 - Drop your `.anim` files on the viewer — or a whole `.unitypackage`, `.zip` or folder — to list the animations inside; find the time and register.
 
 <a id="example"></a>
 ## Example: Necocoya's free poses and emotes
 
-The bundled `pose_aliases.txt` registers 320 poses and emotes from free assets by Necocoya (Kanna Hisashi). **The animations themselves are not included**; get them and import them:
+The bundled `pose_aliases.txt` (`pose_aliases.en.txt` in English) registers 320 poses and emotes from free assets by Necocoya (Kanna Hisashi). **The animations themselves are not included**; get them and import them:
 
 1. Get the free versions of these two on Booth (keep the zips as they are):
    - [Pose set](https://necocoya.booth.pm/items/1634088) (`NCCY_PoseSet_Free_v200.zip` etc.)
    - [Emote set](https://necocoya.booth.pm/items/1065089) (`EmoteSet_Free_v130.zip` etc.)
-2. Open the viewer with ▣; the import screen appears ("取り込み…" at the top opens it any time). Drop the zips on the window, or choose them with "参照…" and press "取り込む".
+2. Open the viewer with ▣; the import screen appears ("Import…" at the top opens it any time). Drop the zips on the window, or choose them with "Browse…" and press "Import".
 3. Only the registered animations are imported into `anim\`.
 
 The sources are listed in `anim_sources.txt` (`folder  path-prefix-in-package  name  [url]`). Newer versions of the assets still import if the file names stay the same. You can add sources for other assets.
@@ -187,4 +189,4 @@ MIT License (LICENSE).
 
 The viewer includes UniVRM (MIT License) and more; see [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
 
-The bundled example `pose_aliases.txt` only lists the names and locations of Necocoya's assets and contains no animations. Use the assets according to their own terms.
+The bundled examples `pose_aliases.txt` and `pose_aliases.en.txt` only list the names and locations of Necocoya's assets and contains no animations. Use the assets according to their own terms.

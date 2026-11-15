@@ -66,7 +66,7 @@ public partial class PoseViewer
         {
             var cfg = (Dictionary<string, object>)MiniJson.Parse(File.ReadAllText(cfgPath));
             outPath = (string)cfg["out"];
-            if (vrm == null || handler == null) throw new Exception("VRM が読めていません");
+            if (vrm == null || handler == null) throw new Exception(L.T("VRM が読めていません", "No VRM loaded"));
             float[] Nums(Dictionary<string, object> d, string k, int n, float[] def)
             {
                 if (d == null || !d.TryGetValue(k, out var o) || o == null) return def;
@@ -131,7 +131,7 @@ public partial class PoseViewer
                     if ((dn - d0) * want <= 1e-5f) break;            // それ以上は離れない(寄らない)
                     d0 = dn; ang = next;
                 }
-                if (ang < 1e-3f) status = want > 0 ? "肘はこれ以上体から離れません" : "肘はこれ以上体に寄りません";
+                if (ang < 1e-3f) status = want > 0 ? L.T("肘はこれ以上体から離れません", "The elbow cannot go farther from the body") : L.T("肘はこれ以上体に寄りません", "The elbow cannot come closer to the body");
                 // AngleAxis の向きを Swivel の向きに直す
                 float s0 = Swivel(root, sp, la.position, hd.position, left, out _);
                 float s1 = Swivel(root, sp, sp + Quaternion.AngleAxis(5f, ax) * el, hd.position, left, out _);
@@ -289,7 +289,7 @@ public partial class PoseViewer
             if (elbowMoved >= 0) sb.Append($"\n \"elbow_moved\": {F(elbowMoved)},\n \"elbow_dir\": {F(elbowDir)},");
             sb.Append($"\n \"reach_error\": {F(reach)},\n \"rot_error\": {F(rotErr)},\n \"swivel_now\": {F(gotS)}\n}}\n");
             File.WriteAllText(outPath, sb.ToString());
-            status = $"IK: 届かなかった距離 {reach:0.000} m、向き {rotErr:0} 度";
+            status = L.T($"IK: 届かなかった距離 {reach:0.000} m、向き {rotErr:0} 度", $"IK: missed by {reach:0.000} m, {rotErr:0} deg");
         }
         catch (Exception e)
         {

@@ -35,7 +35,7 @@ public class AnimClip
         if (!clip.ReadSection(lines, "  m_FloatCurves:"))
             clip.ReadSection(lines, "  m_EditorCurves:");
         if (clip.Curves.Count == 0)
-            throw new Exception("人型のアニメーションの曲線がありません(テキスト形式の人型の .anim か確かめてください)");
+            throw new Exception(L.T("人型のアニメーションの曲線がありません(テキスト形式の人型の .anim か確かめてください)", "No humanoid animation curves (is it a text-format humanoid .anim?)"));
         foreach (var line in lines)
         {
             if (line.StartsWith("  m_SampleRate: "))

@@ -101,7 +101,7 @@ static class OscPoser
 
     public static void Launch(string exe, int[] ports, int current)
     {
-        var args = $"-targets {string.Join(",", ports)} -api {ApiPort} -target {current}";
+        var args = $"-targets {string.Join(",", ports)} -api {ApiPort} -target {current} -lang {(L.Ja ? "ja" : "en")}";
         Process.Start(new ProcessStartInfo(exe, args) { WorkingDirectory = Path.GetDirectoryName(exe), UseShellExecute = false });
     }
 

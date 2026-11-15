@@ -130,6 +130,7 @@ public partial class PoseViewer : MonoBehaviour
 
     IEnumerator Start()
     {
+        L.Init(Arg("lang"));
         WinNative.InstallDrop();
         lib = new PoseLibrary
         {
@@ -160,14 +161,14 @@ public partial class PoseViewer : MonoBehaviour
             path = File.Exists(guess) ? guess : null;
         }
         if (path != null) LoadVrm(path);
-        else status = "VRM をこの窓にドロップするか、「VRM を開く」で選んでください";
+        else status = L.T("VRM をこの窓にドロップするか、「VRM を開く」で選んでください", "Drop a VRM on this window, or choose one with \"Open VRM\"");
 
         if (Arg("alias") != null)
         {
             var inGroup = Arg("in") == "ROOT" ? "" : Arg("in");   // 試し用: 複数のグループにあるとき、どのグループのものか
             var e = lib.Entries.FirstOrDefault(x => x.Group == "エイリアス" && x.Name == Arg("alias") && (inGroup == null || x.AliasGroup == inGroup));
             if (e != null) Select(e);
-            else status = $"エイリアスがありません: {Arg("alias")}";
+            else status = L.T("エイリアスがありません: ", "No such alias: ") + Arg("alias");
         }
         else if (Arg("anim") != null) OpenClip(Arg("anim"));
         else if (Arg("pose") != null)
@@ -259,12 +260,12 @@ public partial class PoseViewer : MonoBehaviour
     {
         if (loading) return;
         loading = true;
-        status = $"読み込み中: {Path.GetFileName(path)}";
+        status = L.T("読み込み中: ", "Loading: ") + Path.GetFileName(path);
         try
         {
             var inst = await Vrm10.LoadPathAsync(path, canLoadVrm0X: true,
                 controlRigGenerationOption: ControlRigGenerationOption.None, showMeshes: true);
-            if (inst == null) throw new Exception("VRM として読めませんでした");
+            if (inst == null) throw new Exception(L.T("VRM として読めませんでした", "Could not read it as a VRM"));
             if (vrm != null) Destroy(vrm.gameObject);
             handler?.Dispose();
             vrm = inst;
@@ -297,7 +298,7 @@ public partial class PoseViewer : MonoBehaviour
         }
         catch (Exception e)
         {
-            status = $"VRM を読めません: {e.Message}";
+            status = L.T("VRM を読めません: ", "Cannot read the VRM: ") + e.Message;
             Debug.LogException(e);
         }
         loading = false;
@@ -305,7 +306,7 @@ public partial class PoseViewer : MonoBehaviour
 
     bool OpenClip(string path, PoseEntry entry = null)
     {
-        if (!File.Exists(path)) { status = $"ファイルがありません: {path}"; return false; }
+        if (!File.Exists(path)) { status = L.T("ファイルがありません: ", "File not found: ") + path; return false; }
         try
         {
             SetClip(AnimClip.Load(path), entry);
@@ -313,7 +314,7 @@ public partial class PoseViewer : MonoBehaviour
         }
         catch (Exception e)
         {
-            status = $"アニメーションを読めません: {e.Message}";
+            status = L.T("アニメーションを読めません: ", "Cannot read the animation: ") + e.Message;
             return false;
         }
     }
@@ -330,7 +331,7 @@ public partial class PoseViewer : MonoBehaviour
         else if (entry?.Frame != null) time = Mathf.Clamp(entry.Frame.Value / clip.SampleRate, 0, clip.Length);
         playing = false;
         sourceLabel = (entry != null ? $"[{entry.Name}] " : "") + Path.GetFileName(path);
-        status = $"アニメーション: {Path.GetFileName(path)}(曲線 {clip.Curves.Count} 本、{clip.Length:0.###} 秒)";
+        status = L.T($"アニメーション: {Path.GetFileName(path)}(曲線 {clip.Curves.Count} 本、{clip.Length:0.###} 秒)", $"Animation: {Path.GetFileName(path)} ({clip.Curves.Count} curves, {clip.Length:0.###} s)");
     }
 
     // .unitypackage・.zip か、フォルダ(Unity に展開したアセットなど)を読み、中のアニメーションを一覧に出す(読むのは別のスレッドで)
@@ -338,7 +339,7 @@ public partial class PoseViewer : MonoBehaviour
     {
         path = path.TrimEnd('\\', '/');
         var name = Path.GetFileName(path);
-        status = $"読んでいます: {name}";
+        status = L.T("読んでいます: ", "Reading: ") + name;
         try
         {
             int n;
@@ -358,12 +359,12 @@ public partial class PoseViewer : MonoBehaviour
             filter = "";
             scroll = Vector2.zero;
             status = n > 0
-                ? $"{name}: アニメーション {n} 個(左の一覧の先頭)"
-                : $"{name}: テキスト形式のアニメーション(.anim)がありません";
+                ? L.T($"{name}: アニメーション {n} 個(左の一覧の先頭)", $"{name}: {n} animations (at the top of the list)")
+                : L.T($"{name}: テキスト形式のアニメーション(.anim)がありません", $"{name}: no text-format animations (.anim)");
         }
         catch (Exception e)
         {
-            status = $"パッケージを読めません: {e.Message}";
+            status = L.T("パッケージを読めません: ", "Cannot read the package: ") + e.Message;
             Debug.LogException(e);
         }
     }
@@ -386,11 +387,11 @@ public partial class PoseViewer : MonoBehaviour
         try
         {
             if (!File.Exists(lib.AliasPath))
-                File.WriteAllText(lib.AliasPath, "# ポーズのエイリアス:  エイリアス名  種類(anim・pose)  対象  [時刻]\n", new System.Text.UTF8Encoding(false));
+                File.WriteAllText(lib.AliasPath, L.T("# ポーズのエイリアス:  エイリアス名  種類(anim・pose)  対象  [時刻]\n", "# Pose aliases:  name  kind (anim, pose)  target  [time]\n"), new System.Text.UTF8Encoding(false));
             System.Diagnostics.Process.Start("notepad.exe", $"\"{lib.AliasPath}\"");
-            status = "pose_aliases.txt をメモ帳で開きました(保存すると一覧が読み直されます)";
+            status = L.T("pose_aliases.txt をメモ帳で開きました(保存すると一覧が読み直されます)", "Opened pose_aliases.txt in Notepad (the list reloads when you save)");
         }
-        catch (Exception e) { status = $"メモ帳を開けません: {e.Message}"; }
+        catch (Exception e) { status = L.T("メモ帳を開けません: ", "Cannot open Notepad: ") + e.Message; }
     }
 
     // ---- 取り込み(anim_sources.txt) ----
@@ -412,11 +413,11 @@ public partial class PoseViewer : MonoBehaviour
         var d = imp;
         path = path.Trim().Trim('"').TrimEnd('\\', '/');
         d.Src = path;
-        if (lib.Sources == null || lib.Sources.Sources.Count == 0) { d.Message = "anim_sources.txt に取り込み元が書かれていません"; return; }
-        if (!File.Exists(path) && !Directory.Exists(path)) { d.Message = $"ありません: {path}"; return; }
-        if (!Archive.CanRead(path)) { d.Message = "読めるのは .zip・.unitypackage・フォルダです"; return; }
+        if (lib.Sources == null || lib.Sources.Sources.Count == 0) { d.Message = L.T("anim_sources.txt に取り込み元が書かれていません", "anim_sources.txt lists no sources"); return; }
+        if (!File.Exists(path) && !Directory.Exists(path)) { d.Message = L.T("ありません: ", "Not found: ") + path; return; }
+        if (!Archive.CanRead(path)) { d.Message = L.T("読めるのは .zip・.unitypackage・フォルダです", "Only .zip, .unitypackage or a folder can be read"); return; }
         d.Busy = true;
-        d.Message = $"読んでいます: {Path.GetFileName(path)}(大きいものは数十秒かかります)";
+        d.Message = L.T($"読んでいます: {Path.GetFileName(path)}(大きいものは数十秒かかります)", $"Reading: {Path.GetFileName(path)} (large files take tens of seconds)");
         var sources = lib.Sources;
         try
         {
@@ -428,11 +429,11 @@ public partial class PoseViewer : MonoBehaviour
             });
             Reload();
             d.Message = string.Join("\n", report);
-            status = n > 0 ? $"{n} 個のアニメーションを anim/ に取り込みました" : "取り込めるものはありませんでした";
+            status = n > 0 ? L.T($"{n} 個のアニメーションを anim/ に取り込みました", $"Imported {n} animations into anim/") : L.T("取り込めるものはありませんでした", "Nothing to import");
         }
         catch (Exception e)
         {
-            d.Message = $"読めません: {e.Message}";
+            d.Message = L.T("読めません: ", "Cannot read: ") + e.Message;
             Debug.LogException(e);
         }
         d.Busy = false;
@@ -443,36 +444,36 @@ public partial class PoseViewer : MonoBehaviour
         var d = imp;
         var src = lib.Sources;
         GUILayout.Space(4);
-        GUILayout.Label("pose_aliases.txt に登録したアニメーションのうち、anim/ にまだないものを、", plain);
-        GUILayout.Label("入手したファイル(zip・.unitypackage・フォルダ)から取り込みます。登録したものだけを取り込みます。", plain);
+        GUILayout.Label(L.T("pose_aliases.txt に登録したアニメーションのうち、anim/ にまだないものを、", "Animations registered in pose_aliases.txt but not yet in anim/ are imported"), plain);
+        GUILayout.Label(L.T("入手したファイル(zip・.unitypackage・フォルダ)から取り込みます。登録したものだけを取り込みます。", "from the file you got (zip, .unitypackage or folder). Only registered ones are imported."), plain);
         GUILayout.Space(6);
         d.Scroll = GUILayout.BeginScrollView(d.Scroll, GUILayout.Height(110));
-        if (src == null || src.Sources.Count == 0) GUILayout.Label("(anim_sources.txt に取り込み元がありません)", plain);
+        if (src == null || src.Sources.Count == 0) GUILayout.Label(L.T("(anim_sources.txt に取り込み元がありません)", "(no sources in anim_sources.txt)"), plain);
         else
             foreach (var s in src.Sources)
             {
                 GUILayout.BeginHorizontal();
-                var state = s.Targets.Count == 0 ? "登録なし" : s.Missing.Count == 0 ? $"✓ {s.Targets.Count} 個とも取り込み済み" : $"未取り込み {s.Missing.Count} / 登録 {s.Targets.Count} 個";
+                var state = s.Targets.Count == 0 ? L.T("登録なし", "none registered") : s.Missing.Count == 0 ? L.T($"✓ {s.Targets.Count} 個とも取り込み済み", $"✓ all {s.Targets.Count} imported") : L.T($"未取り込み {s.Missing.Count} / 登録 {s.Targets.Count} 個", $"{s.Missing.Count} of {s.Targets.Count} not imported");
                 GUILayout.Label($"{s.Name}:  {state}", plain);
                 GUILayout.FlexibleSpace();
-                if (s.Url != null && GUILayout.Button("入手先を開く", GUILayout.Width(110))) Application.OpenURL(s.Url);
+                if (s.Url != null && GUILayout.Button(L.T("入手先を開く", "Get it"), GUILayout.Width(110))) Application.OpenURL(s.Url);
                 GUILayout.EndHorizontal();
             }
         GUILayout.EndScrollView();
         GUILayout.BeginHorizontal();
-        GUILayout.Label("ファイル", GUILayout.Width(60));
+        GUILayout.Label(L.T("ファイル", "File"), GUILayout.Width(60));
         GUI.enabled = !d.Busy;
         d.Src = GUILayout.TextField(d.Src);
-        if (GUILayout.Button("参照…", GUILayout.Width(70)))
+        if (GUILayout.Button(L.T("参照…", "Browse…"), GUILayout.Width(70)))
         {
             var dir = d.Src != "" && File.Exists(d.Src) ? Path.GetDirectoryName(d.Src) : Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Downloads");
-            var f = WinNative.OpenFile("取り込むファイル", "zip・unitypackage", "*.zip;*.unitypackage", dir);
+            var f = WinNative.OpenFile(L.T("取り込むファイル", "File to import"), "zip, unitypackage", "*.zip;*.unitypackage", dir);
             if (f != null) d.Src = f;
         }
-        if (GUILayout.Button("取り込む", GUILayout.Width(90)) && d.Src.Trim() != "") _ = Import(d.Src);
+        if (GUILayout.Button(L.T("取り込む", "Import"), GUILayout.Width(90)) && d.Src.Trim() != "") _ = Import(d.Src);
         GUI.enabled = true;
         GUILayout.EndHorizontal();
-        GUILayout.Label("この窓に zip などをドロップしても取り込めます。入手した zip は展開しなくてかまいません。", plain);
+        GUILayout.Label(L.T("この窓に zip などをドロップしても取り込めます。入手した zip は展開しなくてかまいません。", "You can also drop the zip etc. on this window. No need to extract the zip."), plain);
         if (d.Message != "")
         {
             var old = GUI.color;
@@ -483,11 +484,11 @@ public partial class PoseViewer : MonoBehaviour
         GUILayout.FlexibleSpace();
         GUILayout.BeginHorizontal();
         bool noAsk = PlayerPrefs.GetInt(NoAskKey, 0) != 0;
-        bool nv = GUILayout.Toggle(noAsk, "起動したときにこの画面を出さない(上の「取り込み…」からいつでも開けます)");
+        bool nv = GUILayout.Toggle(noAsk, L.T("起動したときにこの画面を出さない(上の「取り込み…」からいつでも開けます)", "Don't show this at startup (\"Import…\" at the top opens it any time)"));
         if (nv != noAsk) { PlayerPrefs.SetInt(NoAskKey, nv ? 1 : 0); PlayerPrefs.Save(); }
         GUILayout.FlexibleSpace();
         GUI.enabled = !d.Busy;
-        if (GUILayout.Button("閉じる", GUILayout.Width(90))) imp = null;
+        if (GUILayout.Button(L.T("閉じる", "Close"), GUILayout.Width(90))) imp = null;
         GUI.enabled = true;
         GUILayout.EndHorizontal();
     }
@@ -522,7 +523,7 @@ public partial class PoseViewer : MonoBehaviour
     // 登録のダイアログを出す。アニメーションは anim/ にコピーして(もう anim/ にあればそのまま)登録する
     void OpenRegister()
     {
-        if (clip == null && staticPose == null) { status = "登録する姿勢がありません"; return; }
+        if (clip == null && staticPose == null) { status = L.T("登録する姿勢がありません", "Nothing to register"); return; }
         var d = new Dialog();
         if (current?.Kind == "emote")
         {
@@ -562,14 +563,14 @@ public partial class PoseViewer : MonoBehaviour
         return tags;
     }
 
-    static string TagNames(IEnumerable<string> tags) => string.Join("・", tags.Select(g => g == "" ? "ルート" : g));
+    static string TagNames(IEnumerable<string> tags) => string.Join(L.T("・", ", "), tags.Select(g => g == "" ? L.T("ルート", "root") : g));
 
     void DoRegister(Dialog d)
     {
         var name = d.Name.Trim();
-        if (name == "" || name.Contains("\"")) { d.Message = "名前を入れてください(\" は使えません)"; return; }
+        if (name == "" || name.Contains("\"")) { d.Message = L.T("名前を入れてください(\" は使えません)", "Enter a name (\" cannot be used)"); return; }
         var tags = TagsFrom(d);
-        if (tags.Count == 0) { d.Message = "グループ(ルートも含めて)を 1 つ以上選んでください"; return; }
+        if (tags.Count == 0) { d.Message = L.T("グループ(ルートも含めて)を 1 つ以上選んでください", "Choose at least one group (root counts)"); return; }
         var it = new AliasFile.Item { Name = name };
         Action write = null;   // コピーは、登録できると分かってから
         if (current?.Kind == "emote") { it.Kind = "emote"; it.Target = current.Target; }
@@ -580,9 +581,9 @@ public partial class PoseViewer : MonoBehaviour
             {
                 var text = clip.Text ?? File.ReadAllText(clip.Path);
                 var file = SafeFile(d.FileName.Trim());
-                if (file == "") { d.Message = "ファイル名を入れてください"; return; }
+                if (file == "") { d.Message = L.T("ファイル名を入れてください", "Enter a file name"); return; }
                 var dest = Path.Combine(lib.SaveDir, file + ".anim");
-                if (File.Exists(dest) && File.ReadAllText(dest) != text) { d.Message = $"anim/ に同じ名前の別のファイルがあります: {Path.GetFileName(dest)}"; return; }
+                if (File.Exists(dest) && File.ReadAllText(dest) != text) { d.Message = L.T("anim/ に同じ名前の別のファイルがあります: ", "A different file with the same name is in anim/: ") + Path.GetFileName(dest); return; }
                 if (!File.Exists(dest)) write = () => { Directory.CreateDirectory(lib.SaveDir); File.WriteAllText(dest, text, new System.Text.UTF8Encoding(false)); };
                 it.Target = "anim/" + Path.GetFileName(dest);
             }
@@ -596,9 +597,9 @@ public partial class PoseViewer : MonoBehaviour
             else
             {
                 var file = SafeFile(d.FileName.Trim());
-                if (file == "") { d.Message = "ファイル名を入れてください"; return; }
+                if (file == "") { d.Message = L.T("ファイル名を入れてください", "Enter a file name"); return; }
                 var dest = Path.Combine(poses, file + ".json");
-                if (File.Exists(dest)) { d.Message = $"poses/ に同じ名前のファイルがあります: {Path.GetFileName(dest)}"; return; }
+                if (File.Exists(dest)) { d.Message = L.T("poses/ に同じ名前のファイルがあります: ", "A file with the same name is in poses/: ") + Path.GetFileName(dest); return; }
                 var src = currentPosePath;
                 write = () => { Directory.CreateDirectory(poses); File.Copy(src, dest); };
                 it.Target = Path.GetFileNameWithoutExtension(dest);
@@ -612,20 +613,20 @@ public partial class PoseViewer : MonoBehaviour
             lib.Aliases.Put(it, tags);   // 同じ中身がもうあれば、タグを足すだけ
         }
         catch (Exception e) { d.Message = e.Message; return; }
-        AfterAliasChange(it.Key, tags, (existed ? "グループを足しました: " : "登録しました: ") + $"{name}({TagNames(lib.Aliases.TagsOf(it.Key))})");
+        AfterAliasChange(it.Key, tags, (existed ? L.T("グループを足しました: ", "Added groups: ") : L.T("登録しました: ", "Registered: ")) + $"{name} ({TagNames(lib.Aliases.TagsOf(it.Key))})");
     }
 
     void DoChange(Dialog d)
     {
         var name = d.Name.Trim();
-        if (name == "" || name.Contains("\"")) { d.Message = "名前を入れてください(\" は使えません)"; return; }
+        if (name == "" || name.Contains("\"")) { d.Message = L.T("名前を入れてください(\" は使えません)", "Enter a name (\" cannot be used)"); return; }
         var tags = TagsFrom(d);
-        if (tags.Count == 0) { d.Message = "グループを全部外すときは「エイリアスから外す」を使ってください"; return; }
+        if (tags.Count == 0) { d.Message = L.T("グループを全部外すときは「エイリアスから外す」を使ってください", "To remove it from all groups, use \"Remove alias\""); return; }
         var it = new AliasFile.Item { Name = name, Kind = current.Kind, Target = current.Target,
                                       When = d.UseTime && clip != null ? (AtEnd ? null : AliasFile.When(time)) : current.When };
         try { lib.Aliases.Put(it, tags, current.AliasKey); }
         catch (Exception e) { d.Message = e.Message; return; }
-        AfterAliasChange(it.Key, tags, $"変更しました: {name}({TagNames(lib.Aliases.TagsOf(it.Key))})");
+        AfterAliasChange(it.Key, tags, L.T("変更しました: ", "Changed: ") + $"{name} ({TagNames(lib.Aliases.TagsOf(it.Key))})");
     }
 
     void DoDelete(Dialog d)
@@ -637,7 +638,7 @@ public partial class PoseViewer : MonoBehaviour
         lib.Reload();
         aliasFileTime = AliasFilesTime();
         current = null;
-        status = $"エイリアスから外しました: {name}(ファイルはそのまま。未登録の一覧に出ます)";
+        status = L.T($"エイリアスから外しました: {name}(ファイルはそのまま。未登録の一覧に出ます)", $"Removed the alias: {name} (the file is kept and listed as not registered)");
     }
 
     // 書き換えたあと: 読み直して、そのエイリアスを選んだ状態に(今のグループにあればそれ、なければ入れたグループのもの。時刻はそのまま)
@@ -663,21 +664,21 @@ public partial class PoseViewer : MonoBehaviour
         var d = dlg;
         GUILayout.Space(4);
         GUILayout.BeginHorizontal();
-        GUILayout.Label("名前", GUILayout.Width(80));
+        GUILayout.Label(L.T("名前", "Name"), GUILayout.Width(80));
         d.Name = GUILayout.TextField(d.Name);
         GUILayout.EndHorizontal();
         if (!d.Edit && d.Copy)
         {
             bool anim = clip != null;
             GUILayout.BeginHorizontal();
-            GUILayout.Label("ファイル名", GUILayout.Width(80));
+            GUILayout.Label(L.T("ファイル名", "File name"), GUILayout.Width(80));
             d.FileName = GUILayout.TextField(d.FileName);
             GUILayout.Label(anim ? ".anim" : ".json", GUILayout.Width(44));
             GUILayout.EndHorizontal();
-            GUILayout.Label($"{(anim ? "anim/" : "poses/")} にこの名前でコピーして登録します(エイリアスの名前とは別)。", plain);
+            GUILayout.Label(L.T($"{(anim ? "anim/" : "poses/")} にこの名前でコピーして登録します(エイリアスの名前とは別)。", $"Copied into {(anim ? "anim/" : "poses/")} with this name, then registered (separate from the alias name)."), plain);
         }
         GUILayout.Space(4);
-        GUILayout.Label("グループ(タグ): 押して ✓ を付けたグループに入れる。いくつでも。", plain);
+        GUILayout.Label(L.T("グループ(タグ): 押して ✓ を付けたグループに入れる。いくつでも。", "Groups (tags): it goes into the groups you check (any number)."), plain);
         d.Scroll = GUILayout.BeginScrollView(d.Scroll, GUILayout.Height(96));
         GUILayout.BeginHorizontal();
         int n = 0;
@@ -686,7 +687,7 @@ public partial class PoseViewer : MonoBehaviour
             bool on = d.Tags.Contains(g);
             var old = GUI.backgroundColor;
             if (on) GUI.backgroundColor = new Color(0.5f, 0.8f, 1f);
-            if (GUILayout.Button((on ? "✓ " : "　 ") + (g == "" ? "ルート" : g), GUILayout.Width(130)))   // 押すと入れる・外す
+            if (GUILayout.Button((on ? "✓ " : "　 ") + (g == "" ? L.T("ルート", "root") : g), GUILayout.Width(130)))   // 押すと入れる・外す
             {
                 if (on) d.Tags.Remove(g);
                 else d.Tags.Add(g);
@@ -697,13 +698,13 @@ public partial class PoseViewer : MonoBehaviour
         GUILayout.EndHorizontal();
         GUILayout.EndScrollView();
         GUILayout.BeginHorizontal();
-        GUILayout.Label("新しいグループ", GUILayout.Width(110));
+        GUILayout.Label(L.T("新しいグループ", "New group"), GUILayout.Width(110));
         d.NewTag = GUILayout.TextField(d.NewTag);
         GUILayout.EndHorizontal();
         if (clip != null && current?.Kind != "pose")
         {
-            var t = AtEnd ? "最後" : $"{AliasFile.When(time)} 秒";
-            d.UseTime = GUILayout.Toggle(d.UseTime, d.Edit ? $"時刻を今の {t} にする" : $"時刻 {t} を付ける(付けなければ最後)");
+            var t = AtEnd ? L.T("最後", "end") : $"{AliasFile.When(time)} " + L.T("秒", "s");
+            d.UseTime = GUILayout.Toggle(d.UseTime, d.Edit ? L.T($"時刻を今の {t} にする", $"Set the time to the current {t}") : L.T($"時刻 {t} を付ける(付けなければ最後)", $"Add the time {t} (otherwise the end)"));
         }
         if (d.Message != "")
         {
@@ -714,14 +715,14 @@ public partial class PoseViewer : MonoBehaviour
         }
         GUILayout.FlexibleSpace();
         GUILayout.BeginHorizontal();
-        if (d.Edit && GUILayout.Button(d.ConfirmDelete ? "本当に外す" : "エイリアスから外す", GUILayout.Width(150)))
+        if (d.Edit && GUILayout.Button(d.ConfirmDelete ? L.T("本当に外す", "Really remove") : L.T("エイリアスから外す", "Remove alias"), GUILayout.Width(150)))
         {
             if (d.ConfirmDelete) DoDelete(d);
             else d.ConfirmDelete = true;
         }
         GUILayout.FlexibleSpace();
-        if (GUILayout.Button("キャンセル", GUILayout.Width(100))) dlg = null;
-        if (GUILayout.Button(d.Edit ? "変更" : "登録", GUILayout.Width(100)) && dlg == d)
+        if (GUILayout.Button(L.T("キャンセル", "Cancel"), GUILayout.Width(100))) dlg = null;
+        if (GUILayout.Button(d.Edit ? L.T("変更", "Change") : L.T("登録", "Register"), GUILayout.Width(100)) && dlg == d)
         {
             if (d.Edit) DoChange(d);
             else DoRegister(d);
@@ -731,7 +732,7 @@ public partial class PoseViewer : MonoBehaviour
 
     bool OpenPoseFile(string path, PoseEntry entry = null)
     {
-        if (!File.Exists(path)) { status = $"ファイルがありません: {path}"; return false; }
+        if (!File.Exists(path)) { status = L.T("ファイルがありません: ", "File not found: ") + path; return false; }
         try
         {
             staticPose = lib.PoseFromJson(path);
@@ -740,12 +741,12 @@ public partial class PoseViewer : MonoBehaviour
             currentPosePath = path;
             poseFileTime = File.GetLastWriteTime(path);
             sourceLabel = (entry != null ? $"[{entry.Name}] " : "") + Path.GetFileName(path);
-            status = $"ポーズ: {Path.GetFileName(path)}(筋肉 {staticPose.Muscles.Count} 個)";
+            status = L.T($"ポーズ: {Path.GetFileName(path)}(筋肉 {staticPose.Muscles.Count} 個)", $"Pose: {Path.GetFileName(path)} ({staticPose.Muscles.Count} muscles)");
             return true;
         }
         catch (Exception e)
         {
-            status = $"ポーズを読めません: {e.Message}";
+            status = L.T("ポーズを読めません: ", "Cannot read the pose: ") + e.Message;
             return false;
         }
     }
@@ -770,7 +771,7 @@ public partial class PoseViewer : MonoBehaviour
             && !File.Exists(lib.Sources.LocalPath(e.Target)))
         {
             // 取り込み元のあるアニメーションで、まだ取り込んでいないもの
-            imp = new ImportDialog { Message = $"「{e.Name}」はまだ取り込んでいません({s.Name})。入手したファイルを選んで取り込んでください。" };
+            imp = new ImportDialog { Message = L.T($"「{e.Name}」はまだ取り込んでいません({s.Name})。入手したファイルを選んで取り込んでください。", $"\"{e.Name}\" is not imported yet ({s.Name}). Choose the file you got and import it.") };
             return;
         }
         if (!ok && e.AliasGroup != null)
@@ -780,9 +781,9 @@ public partial class PoseViewer : MonoBehaviour
             clip = null;
             staticPose = null;
             currentPosePath = null;
-            sourceLabel = $"[{e.Name}] (読めません)";
+            sourceLabel = $"[{e.Name}] " + L.T("(読めません)", "(cannot read)");
             OpenEdit();
-            dlg.Message = $"{reason}\n「エイリアスから外す」で外せます。";
+            dlg.Message = reason + L.T("\n「エイリアスから外す」で外せます。", "\nYou can remove it with \"Remove alias\".");
         }
     }
 
@@ -799,7 +800,7 @@ public partial class PoseViewer : MonoBehaviour
         else if (ext == ".anim") OpenClip(path);
         else if (ext == ".json") OpenPoseFile(path);
         else if (ext == ".unitypackage" || ext == ".zip") _ = LoadPackage(path);
-        else status = $"開けない種類のファイルです: {Path.GetFileName(path)}(.vrm・.anim・.json・.unitypackage・.zip・フォルダ)";
+        else status = L.T("開けない種類のファイルです: ", "Cannot open this kind of file: ") + Path.GetFileName(path) + L.T("(.vrm・.anim・.json・.unitypackage・.zip・フォルダ)", " (.vrm, .anim, .json, .unitypackage, .zip, folder)");
     }
 
     // ---- 毎フレーム ----
@@ -824,7 +825,7 @@ public partial class PoseViewer : MonoBehaviour
         {
             nextAliasPoll = Time.unscaledTime + 1f;
             var t = AliasFilesTime();
-            if (aliasFileTime != default && t != aliasFileTime) { Reload(); status = "pose_aliases.txt が書き換わったので、一覧を読み直しました"; }
+            if (aliasFileTime != default && t != aliasFileTime) { Reload(); status = L.T("pose_aliases.txt が書き換わったので、一覧を読み直しました", "pose_aliases.txt changed; the list was reloaded"); }
             aliasFileTime = t;
         }
         // 決まった姿勢のファイルが書き換わったら読み直す(pose_state.json を見張る)
@@ -902,7 +903,7 @@ public partial class PoseViewer : MonoBehaviour
         sb.Append(string.Join(",\n", lines));
         sb.Append("\n }\n}\n");
         File.WriteAllText(path, sb.ToString());
-        status = $"手の位置を書き出しました: {path}";
+        status = L.T("手の位置を書き出しました: ", "Wrote hand info: ") + path;
     }
 
     bool Typing => GUIUtility.keyboardControl != 0;
@@ -1032,7 +1033,7 @@ public partial class PoseViewer : MonoBehaviour
         Style();
         if (!showUi)
         {
-            if (Arg("noui") == null) GUI.Label(new Rect(8, 4, 400, 24), "Tab: 操作の表示");
+            if (Arg("noui") == null) GUI.Label(new Rect(8, 4, 400, 24), L.T("Tab: 操作の表示", "Tab: show controls"));
             return;
         }
         float w = Screen.width, h = Screen.height;
@@ -1046,11 +1047,11 @@ public partial class PoseViewer : MonoBehaviour
         GUI.enabled = true;
         if (dlg != null)
         {
-            var title = dlg.Edit ? $"エイリアスの編集: {current?.Name}" : "エイリアスに登録";
+            var title = dlg.Edit ? L.T("エイリアスの編集: ", "Edit alias: ") + current?.Name : L.T("エイリアスに登録", "Register as alias");
             GUI.ModalWindow(1, new Rect((w - 600) / 2, (h - 380) / 2, 600, 380), DialogWindow, title);
         }
         else if (imp != null)
-            GUI.ModalWindow(2, new Rect((w - 720) / 2, (h - 400) / 2, 720, 400), ImportWindow, "アニメーションの取り込み");
+            GUI.ModalWindow(2, new Rect((w - 720) / 2, (h - 400) / 2, 720, 400), ImportWindow, L.T("アニメーションの取り込み", "Import animations"));
     }
 
     // 見出し(押すと開け閉め)。開いていれば true
@@ -1075,11 +1076,11 @@ public partial class PoseViewer : MonoBehaviour
     {
         GUILayout.BeginArea(r);
         GUILayout.BeginHorizontal();
-        GUILayout.Label("絞り込み", GUILayout.Width(60));
+        GUILayout.Label(L.T("絞り込み", "Filter"), GUILayout.Width(60));
         filter = GUILayout.TextField(filter);
-        if (GUILayout.Button("読み直す", GUILayout.Width(70))) { Reload(); status = "一覧を読み直しました"; }
+        if (GUILayout.Button(L.T("読み直す", "Reload"), GUILayout.Width(70))) { Reload(); status = L.T("一覧を読み直しました", "Reloaded the list"); }
         GUILayout.EndHorizontal();
-        if (GUILayout.Button("pose_aliases.txt をメモ帳で編集")) EditAliasFile();
+        if (GUILayout.Button(L.T("pose_aliases.txt をメモ帳で編集", "Edit pose_aliases.txt in Notepad"))) EditAliasFile();
         foreach (var e in lib.Errors)
         {
             var old = GUI.color;
@@ -1100,7 +1101,7 @@ public partial class PoseViewer : MonoBehaviour
             if (group == "エイリアス")
             {
                 // ルートはいつも開いている。グループ(1 段)は普段は閉じている
-                GUILayout.Label("■ エイリアス", plain);
+                GUILayout.Label(L.T("■ エイリアス", "■ Aliases"), plain);
                 foreach (var e in items.Where(x => x.AliasGroup == "")) EntryButton(e, left);
                 foreach (var g in lib.AliasGroups)
                 {
@@ -1113,7 +1114,7 @@ public partial class PoseViewer : MonoBehaviour
             }
             if (items.Count == 0) continue;
             bool defaultOpen = group != "エモート";
-            if (Foldout("S:" + group, group, items.Count, defaultOpen, filtering))
+            if (Foldout("S:" + group, L.Group(group), items.Count, defaultOpen, filtering))
                 foreach (var e in items) EntryButton(e, left);
         }
         GUILayout.EndScrollView();
@@ -1132,30 +1133,31 @@ public partial class PoseViewer : MonoBehaviour
     {
         GUILayout.BeginArea(r);
         GUILayout.BeginHorizontal();
-        if (GUILayout.Button("VRM を開く…", GUILayout.Width(110)))
+        if (GUILayout.Button(L.T("VRM を開く…", "Open VRM…"), GUILayout.Width(110)))
         {
             var dir = vrmPath != null ? Path.GetDirectoryName(vrmPath) : Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "VRoid");
-            var f = WinNative.OpenFile("VRM を開く", "VRM", "*.vrm", dir);
+            var f = WinNative.OpenFile(L.T("VRM を開く", "Open VRM"), "VRM", "*.vrm", dir);
             if (f != null) LoadVrm(f);
         }
-        if (GUILayout.Button("アニメを開く…", GUILayout.Width(110)))
+        if (GUILayout.Button(L.T("アニメを開く…", "Open anim…"), GUILayout.Width(110)))
         {
             var dir = clip != null ? Path.GetDirectoryName(clip.Path) : Path.Combine(lib.ProjectDir, "Assets");
-            var f = WinNative.OpenFile("アニメーションを開く", "アニメーション", "*.anim", dir);
+            var f = WinNative.OpenFile(L.T("アニメーションを開く", "Open animation"), L.T("アニメーション", "Animation"), "*.anim", dir);
             if (f != null) OpenClip(f);
         }
         int missing = lib.Sources?.MissingCount ?? 0;
-        if (lib.Sources != null && lib.Sources.Sources.Count > 0 && GUILayout.Button(missing > 0 ? $"取り込み…({missing})" : "取り込み…", GUILayout.Width(missing > 0 ? 130 : 90)))
+        if (lib.Sources != null && lib.Sources.Sources.Count > 0 && GUILayout.Button(L.T("取り込み…", "Import…") + (missing > 0 ? $"({missing})" : ""), GUILayout.Width(missing > 0 ? 130 : 90)))
             imp = new ImportDialog();
         GUILayout.Space(16);
-        foreach (var (label, view) in new[] { ("正面", "front"), ("右", "right"), ("左", "left"), ("後", "back"), ("上", "top") })
-            if (GUILayout.Button(label, GUILayout.Width(44))) ResetView(view);
+        foreach (var (label, view) in new[] { (L.T("正面", "Front"), "front"), (L.T("右", "Right"), "right"), (L.T("左", "Left"), "left"), (L.T("後", "Back"), "back"), (L.T("上", "Top"), "top") })
+            if (GUILayout.Button(label, GUILayout.Width(L.Ja ? 44 : 50))) ResetView(view);
         GUILayout.Space(8);
-        inPlace = GUILayout.Toggle(inPlace, "その場で(左右・前後を止める)");
+        inPlace = GUILayout.Toggle(inPlace, L.T("その場で(左右・前後を止める)", "In place"));
         GUILayout.FlexibleSpace();
+        if (GUILayout.Button(L.Ja ? "English" : "日本語", GUILayout.Width(70))) { L.Set(!L.Ja); Reload(); }
         GUILayout.EndHorizontal();
-        GUILayout.Label($"{(vrmPath != null ? Path.GetFileName(vrmPath) : "(VRM なし)")}   ／   {sourceLabel}", plain);
-        GUILayout.Label("左ドラッグ: 回す  右ドラッグ: 動かす  ホイール: 寄る  F: 正面  Space: 再生  ←→: 1 コマ  Tab: 隠す  (.vrm・.anim・.json・.unitypackage・.zip・フォルダはドロップで開く)", plain);
+        GUILayout.Label($"{(vrmPath != null ? Path.GetFileName(vrmPath) : L.T("(VRM なし)", "(no VRM)"))}   ／   {sourceLabel}", plain);
+        GUILayout.Label(L.T("左ドラッグ: 回す  右ドラッグ: 動かす  ホイール: 寄る  F: 正面  Space: 再生  ←→: 1 コマ  Tab: 隠す  (.vrm・.anim・.json・.unitypackage・.zip・フォルダはドロップで開く)", "L-drag: rotate  R-drag: pan  Wheel: zoom  F: front  Space: play  ←→: frame  Tab: hide  (drop .vrm/.anim/.json/.unitypackage/.zip/folder)"), plain);
         GUILayout.EndArea();
     }
 
@@ -1170,13 +1172,13 @@ public partial class PoseViewer : MonoBehaviour
         float len = clip != null ? clip.Length : 1;
         var nt = GUILayout.HorizontalSlider(time, 0, len, GUILayout.ExpandWidth(true), GUILayout.Height(22));
         if (clip != null && !Mathf.Approximately(nt, time)) { time = nt; playing = false; }
-        GUILayout.Label(clip != null ? $"{time:0.000} / {clip.Length:0.000} 秒  ({time * clip.SampleRate:0} / {clip.Length * clip.SampleRate:0} f)" : "(静止ポーズ)", GUILayout.Width(260));
+        GUILayout.Label(clip != null ? $"{time:0.000} / {clip.Length:0.000} " + L.T("秒", "s") + $"  ({time * clip.SampleRate:0} / {clip.Length * clip.SampleRate:0} f)" : L.T("(静止ポーズ)", "(still pose)"), GUILayout.Width(260));
         GUI.enabled = true;
         GUILayout.EndHorizontal();
 
         GUILayout.BeginHorizontal();
-        loop = GUILayout.Toggle(loop, "くり返す", GUILayout.Width(80));
-        GUILayout.Label("速さ", GUILayout.Width(32));
+        loop = GUILayout.Toggle(loop, L.T("くり返す", "Loop"), GUILayout.Width(80));
+        GUILayout.Label(L.T("速さ", "Speed"), GUILayout.Width(L.Ja ? 32 : 44));
         foreach (var s in new[] { 0.25f, 0.5f, 1f })
         {
             var old = GUI.backgroundColor;
@@ -1185,16 +1187,16 @@ public partial class PoseViewer : MonoBehaviour
             GUI.backgroundColor = old;
         }
         GUILayout.Space(8);
-        if (File.Exists(Path.Combine(lib.AgentDir, "pose_send.py")) && GUILayout.Button("pose_send のコマンドをコピー", GUILayout.Width(200)))
+        if (File.Exists(Path.Combine(lib.AgentDir, "pose_send.py")) && GUILayout.Button(L.T("pose_send のコマンドをコピー", "Copy pose_send command"), GUILayout.Width(200)))
         {
             var cmd = SendCommand();
-            if (cmd != null) { GUIUtility.systemCopyBuffer = cmd; status = $"コピー: {cmd}"; }
+            if (cmd != null) { GUIUtility.systemCopyBuffer = cmd; status = L.T("コピー: ", "Copied: ") + cmd; }
         }
         bool was = GUI.enabled;
         GUI.enabled = was && (clip != null || staticPose != null);
-        if (GUILayout.Button("登録…", GUILayout.Width(80))) OpenRegister();
+        if (GUILayout.Button(L.T("登録…", "Register…"), GUILayout.Width(80))) OpenRegister();
         GUI.enabled = was && current?.AliasGroup != null;
-        if (GUILayout.Button("編集…", GUILayout.Width(80))) OpenEdit();
+        if (GUILayout.Button(L.T("編集…", "Edit…"), GUILayout.Width(80))) OpenEdit();
         GUI.enabled = was;
         GUILayout.Space(8);
         GUILayout.Label(status, plain);
@@ -1209,11 +1211,11 @@ public partial class PoseViewer : MonoBehaviour
         if (clip != null)
         {
             if (current != null && current.Kind == "emote") return $"uv run pose_send.py from-emote {current.Target} --time {t}";
-            if (clip.PackageFile != null) { status = "パッケージの中のアニメーションです。先に「登録…」で anim/ に保存してください"; return null; }
+            if (clip.PackageFile != null) { status = L.T("パッケージの中のアニメーションです。先に「登録…」で anim/ に保存してください", "This animation is inside a package. Save it to anim/ with \"Register…\" first"); return null; }
             return $"uv run pose_send.py from-anim \"{clip.Path}\" --time {t}";
         }
         if (current != null && current.Kind == "pose") return $"uv run pose_send.py load {current.Target}";
-        status = "この姿勢は送るコマンドにできません";
+        status = L.T("この姿勢は送るコマンドにできません", "This pose cannot be made into a send command");
         return null;
     }
 

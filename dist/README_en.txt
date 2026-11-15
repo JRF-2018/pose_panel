@@ -14,8 +14,10 @@ It takes some effort to get started. Please read the README on GitHub:
 - VRChat
 
 * Getting started
+0. English users: first rename pose_aliases.en.txt to pose_aliases.txt (replace the Japanese example).
 1. Extract OscPoser and put its OscPoser_<version> folder inside or next to this folder (found automatically).
-2. Start VrcPoseAliasesPanel.exe (it opens OscPoser too). Set the language in ⚙ if needed.
+2. Start VrcPoseAliasesPanel.exe (it opens OscPoser too). Set the language in ⚙ if needed;
+   the panel opens OscPoser and the viewer in the same language.
 3. Open the viewer (VrmPoseViewer) with ▣ and first drop a VRM on it.
 4. For the example poses, get Necocoya's free pose set and emote set on Booth and drop the zips on the viewer's import screen.
      https://necocoya.booth.pm/items/1634088
@@ -37,7 +39,7 @@ The panel's 0/1/2 are these numbers; their OSC ports are 9000, 9010, 9020. With 
 
 * License
 MIT License (LICENSE.txt). The viewer includes UniVRM and more (THIRD_PARTY_NOTICES.txt).
-The example pose_aliases.txt only lists names and locations of Necocoya's assets, no animations.
+The example pose_aliases.txt (and pose_aliases.en.txt) only lists names and locations of Necocoya's assets, no animations.
 
 JRF ( http://jrf.cocolog-nifty.com/statuses , X: @jion_rockford )
 Mostly written by Claude Opus 5.5.
