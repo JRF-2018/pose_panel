@@ -36,7 +36,7 @@ The panel, OscPoser and the viewer all have English screens. The panel follows t
 
 ## Install
 
-1. Extract the zip anywhere (e.g. `D:\VrcPoseAliasesPanel_0.1.1\`). Rename `pose_aliases.en.txt` to `pose_aliases.txt` (replacing the Japanese example).
+1. Extract the zip anywhere (e.g. `D:\VrcPoseAliasesPanel_0.1.2\`). Rename `pose_aliases.en.txt` to `pose_aliases.txt` (replacing the Japanese example).
 2. Extract OscPoser too, and put its `OscPoser_<version>` folder **inside or next to** this folder; it is then found automatically (the double folder made by "Extract All" is fine). If you put it elsewhere, you are asked for `OscPoser.exe` at startup (or set it in ⚙).
 3. Start `VrcPoseAliasesPanel.exe`. If OscPoser is not running, the panel opens it.
 4. Open the viewer with ▣ and **first drop a VRM** on it ("Open VRM…" also works). It is used to check poses (remembered separately from OscPoser's VRM).
@@ -67,7 +67,7 @@ In OscPoser's window you can adjust the body direction/height or move the hands 
 | (choose a pose) | The pose menu; picking opens the pose in OscPoser |
 | ➤ | Send the current pose to VRChat |
 | ⇩ | Save the current pose (including edits in OscPoser) to `poses\<name>.json` |
-| ✉ | Chat (Enter to send) |
+| ✉ | Chat (Enter to send; send it empty to clear the chatbox right away) |
 | bottom line | Recent log; hover for more, double-click to copy |
 
 Dropping a `.vrm` on the panel makes it this target's VRM in OscPoser.

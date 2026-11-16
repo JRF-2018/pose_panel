@@ -15,7 +15,7 @@ using static L;
 
 class PanelForm : Form
 {
-    public const string Version = "0.1.1";
+    public const string Version = "0.1.2";
     static readonly string Here = AppDomain.CurrentDomain.BaseDirectory.TrimEnd('\\');
     static string AliasPath => Path.Combine(Here, "pose_aliases.txt");
     static string ViewerExe => Path.Combine(Here, "VrmPoseViewer", "VrmPoseViewer.exe");
@@ -143,7 +143,7 @@ class PanelForm : Form
         var lbl = new Label { Text = "✉", Font = iconFont, AutoSize = true, Margin = new Padding(2, 5, 2, 0) };
         r.Controls.Add(lbl);
         chatBox = new TextBox { Width = 330, Margin = new Padding(1, 4, 1, 1) };
-        tip.SetToolTip(chatBox, T("チャット(Enter で送る)", "Chatbox (Enter to send)"));
+        tip.SetToolTip(chatBox, T("チャット(Enter で送る。空のまま送るとチャットボックスを消す)", "Chatbox (Enter to send; send it empty to clear the chatbox)"));
         chatBox.KeyDown += (s, e) => { if (e.KeyCode == Keys.Enter) { e.SuppressKeyPress = true; SendChat(); } };
         r.Controls.Add(chatBox);
 
@@ -490,14 +490,14 @@ class PanelForm : Form
 
     void SendChat()
     {
-        var text = chatBox.Text;
-        if (text.Trim() == "") return;
+        // 空のまま送ると、空の文字列を送ってチャットボックスをすぐ消す(VRChat はそれで消える)
+        var text = chatBox.Text.Trim() == "" ? "" : chatBox.Text;
         int n = Cur;
         try
         {
             Osc.Chat(Port(n), text);
             chatBox.Clear();
-            Log(T("チャット: ", "Chat: ") + text, n);
+            Log(text == "" ? T("チャットを消しました", "Cleared the chatbox") : T("チャット: ", "Chat: ") + text, n);
         }
         catch (Exception e) { Log(e.Message); }
     }
